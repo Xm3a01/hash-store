@@ -1,5 +1,6 @@
 <?php
 
+use App\Category;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,14 +14,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Auth::routes();
+
+Route::get('/' , 'IndexController@index')->name('index');
+
+
+Route::group(['prefix' => 'admins' , 'middleware' => 'auth:admin'] , function(){
+    Route::get('dashboard' , 'Admin\IndexController@index')->name('admins.dashboard');
+    Route::resource('categories','Admin\Dashboard\CategoryController');
+    Route::resource('products','Admin\Dashboard\ProductController');
+    Route::resource('orders','Admin\Dashboard\OrderController');
 });
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
+Route::get('admins/login','Admin\Auth\LoginController@showAdminLoginForm')->name('admins.login');
+Route::post('admins/login', 'Admin\Auth\LoginController@login')->name('admins.login');
+Route::get('logout', 'Admin\Auth\LoginController@logout')->name('logout');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('cart/{id}' , 'CartController@addItem')->name('cart');
+Route::get('cart-get' , 'CartController@getItem')->name('cart.get');
+Route::get('cart-update' , 'CartController@updateItem')->name('cart.update');
+
+Route::get('test' , function(){
+   return view('test');
+});
