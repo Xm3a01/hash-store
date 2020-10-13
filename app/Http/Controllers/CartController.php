@@ -9,11 +9,27 @@ use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
-    public function addItem($id)
+
+    public function cartItems()
     {
-        if($id == -1){
-            return response()->json(['item' => Cart::getContent() , 'count' => Cart::getTotalQuantity()]);
-        } else {
+        if(Auth::check()){
+            $userId = Auth::user()->id;
+            return response()->json([
+                'item' => Cart::session($userId)->getContent() , 
+                'count' => Cart::session($userId)->getTotalQuantity() , 
+                'total' => Cart::session($userId)->getTotal()
+                ]);
+          } else {
+            return response()->json([
+                'item' => Cart::getContent() , 
+                'count' => Cart::getTotalQuantity() , 
+                'total' => Cart::getTotal()
+                ]);
+          }
+    }
+    public function addItem(Request $request , $id)
+    {
+        $total = 0;
             if(Auth::check()){
             $userId = Auth::user()->id;
             $item =  Cart::session($userId)->add([
@@ -23,7 +39,8 @@ class CartController extends Controller
                     'quantity' => 1,
             ]);
 
-                return response()->json(['item' => $item->getContent() , 'count' => $item->getTotalQuantity()]);
+            $total = Cart::session($userId)->getTotal();
+
             } else {
                 $item = Cart::add([
                     'id' => $id,
@@ -31,15 +48,67 @@ class CartController extends Controller
                     'price' => 69.25,
                     'quantity' => 1,
                 ]);
-                return response()->json(['item' => $item->getContent() , 'count' => $item->getTotalQuantity()]);
+
+                $total = Cart::getTotal();
+            } 
+            return response()->json([
+                'item' => $item->getContent() , 
+                'count' => $item->getTotalQuantity() , 
+                'total' => $total
+                ]);
         }
-     }
-        
-    }
 
 
-    public function updateItem()
+    public function updateItem(Request $request)
     {
-        # code...
+        if(Auth::check()) {
+            $userId = Auth::user()->id;
+            $item =  Cart::session($userId)->update($request->id , [
+                'quantity' => $request->quantity,
+            ]);
+            return response()->json([
+                'item' => Cart::session($userId)->getContent() , 
+                'total' => Cart::session($userId)->getTotal()
+                ]);
+        } else {
+            $item = Cart::update($request->id , array(
+                'quantity' => $request->quantity,
+            ));
+            return response()->json([
+                
+                'item' => Cart::getContent() , 
+                'total' => Cart::getTotal()
+                ]);
+        }
+
     }
+
+    public function delete(Request $request)
+    {
+
+         if(Auth::check()) {
+            $userId = Auth::user()->id;
+            Cart::session($userId)->remove($request->id);
+            return response()->json(['items' => Cart::session($userId)->getContent()]);
+         } else {
+             Cart::remove($request->id);
+             return response()->json(['items' => Cart::getContent()]);
+         }
+
+    }
+
+
+    public function deleteAll()
+    {
+        if(Auth::check()) {
+            $userId = Auth::user()->id;
+            Cart::session($userId)->clear();
+            return response()->json(['items' => Cart::session($userId)->getContent()]);
+    } else {
+        Cart::clear();
+        return response()->json(['items' => Cart::getContent()]);
+    }
+
+    return response()->json(['code' => 200]);
+  }
 }

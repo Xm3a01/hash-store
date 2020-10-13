@@ -36,6 +36,9 @@ Route::get('logout', 'Admin\Auth\LoginController@logout')->name('logout');
 Route::get('cart/{id}' , 'CartController@addItem')->name('cart');
 Route::get('cart-get' , 'CartController@getItem')->name('cart.get');
 Route::get('cart-update' , 'CartController@updateItem')->name('cart.update');
+Route::get('cart-delete' , 'CartController@delete')->name('cart.delete');
+Route::get('cart-delete-all' , 'CartController@deleteAll')->name('cart.delete.all');
+Route::get('get-cartItems' , 'CartController@cartItems')->name('cart.items');
 
 Route::get('test' , function(){
    return view('test');

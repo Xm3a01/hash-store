@@ -23,9 +23,10 @@
   </div>
 </nav>
           <span v-for="c in cart" :key="c.id">
+          <a class="dropdown-item" href="#" >ID : {{c.id}}</a>
           <a class="dropdown-item" href="#" >Name : {{c.name}}</a>
           <a class="dropdown-item" href="#" >Price : {{c.price}}</a>
-          <a class="dropdown-item" href="#">Total : {{c.quantity * c.price}}</a>
+          <a class="dropdown-item" href="#">subtotal : {{c.quantity * c.price}}</a>
           <div class="dropdown-divider"></div>
           </span>
 
