@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use Cart;
+use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,15 +28,16 @@ class CartController extends Controller
                 ]);
           }
     }
-    public function addItem(Request $request , $id)
+    public function addItem($id)
     {
-        $total = 0;
+           $total = 0;
+           $product = Product::findOrFail($id);
             if(Auth::check()){
             $userId = Auth::user()->id;
             $item =  Cart::session($userId)->add([
                     'id' => $id,
-                    'name' => 'Sample Item 2',
-                    'price' => 69.25,
+                    'name' => $product->name,
+                    'price' => $product->price,
                     'quantity' => 1,
             ]);
 
@@ -44,8 +46,8 @@ class CartController extends Controller
             } else {
                 $item = Cart::add([
                     'id' => $id,
-                    'name' => 'Sample Item 2',
-                    'price' => 69.25,
+                    'name' => $product->name,
+                    'price' => $product->price,
                     'quantity' => 1,
                 ]);
 
@@ -110,5 +112,20 @@ class CartController extends Controller
     }
 
     return response()->json(['code' => 200]);
+  }
+
+  public function saveOrder()
+  {
+    if(Auth::check()) {
+        $userId = Auth::user()->id;
+      foreach (Cart::session($userId)->getContent() as $key => $cart) { //weltested letar
+          Order::create([
+            'name' =>$cart->name,
+            'totalPrice' => $cart->price,
+            'quantity' => $cart->quantity,
+            'user_id' => $userId
+         ]);
+      }
+    }
   }
 }

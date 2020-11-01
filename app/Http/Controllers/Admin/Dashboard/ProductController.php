@@ -31,9 +31,13 @@ class ProductController extends Controller
             'description' => $request->description,
             'price' => $request->price,
             'category_id' => $request->category_id,
-        ]);
+            ]);
+            
+            if($request->hasFile('image')) {
+                $product->addMedia($request->image)->preservingOriginal()->toMediaCollection('products');
+            }
 
-        return $product;
+        return view('test')->withProduct($product);
     }
 
    

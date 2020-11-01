@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-<div id="app">
-    <page />
-</div>  
+  <vue-page />  //This file coming from Vue js 
 @endsection

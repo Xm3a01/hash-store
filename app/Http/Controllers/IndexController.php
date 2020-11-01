@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
 {
@@ -22,6 +23,9 @@ class IndexController extends Controller
      */
     public function index()
     {
-        return view('index');
+        if(Auth::check()) {
+            $user = Auth::user()->name;
+        }
+        return view('index' ,['user' => $user ?? '' ]);
     }
 }
