@@ -24,4 +24,4 @@
 <script src="{{asset('vendor/js/views/main.js')}}"></script>
 
 <!-- Grunt watch plugin -->
-<script src="//localhost:35729/livereload.js"></script>
+{{-- <script src="//localhost:35729/livereload.js"></script> --}}

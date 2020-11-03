@@ -13,7 +13,7 @@ class Category extends Model implements HasMedia
     use InteractsWithMedia;
 
     
-    protected $fillable = ['name'];
+    protected $fillable = ['name' , 'description'];
 
 
 
@@ -24,6 +24,6 @@ class Category extends Model implements HasMedia
 
     public function getImageAttribute()
     {
-        return $this->getFirstMediaUrl('catrgories');
+        return $this->getFirstMediaUrl('categories');
     }
 }

@@ -17,16 +17,13 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        $categories->map(functioin($category){
-            $category['image'] = $category->image
-        });
-        return $categories;
+        return view('admins.dashboard.categories.index' , ['categories' => $categories]);
     }
 
 
     public function create()
     {
-        //
+        return view('admins.dashboard.categories.create');
     }
 
    
@@ -35,13 +32,13 @@ class CategoryController extends Controller
         $category = Category::create([
             'name' => $request->name,
             'description' => $request->description
-        ]);
-
-        if($request->hasFile('image')) {
-            $category->addMedia($request->image)->preservingOriginal()->toMediaCollection('categories');
+            ]);
+            
+            if($request->hasFile('image')) {
+             $category->addMedia($request->image)->preservingOriginal()->toMediaCollection('categories');
         }
 
-        return $category;
+        return redirect()->route('categories.index');
     }
 
    

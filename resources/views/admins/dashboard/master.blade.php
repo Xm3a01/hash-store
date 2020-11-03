@@ -40,9 +40,9 @@
 
          @yield('content')
 
+         {{-- @include('admins.dashboard._includes.scripts') --}}
      </main>
 
-     @include('admins.dashboard._includes.scripts')
      
  </body>
  

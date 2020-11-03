@@ -14,7 +14,7 @@ class ProductController extends Controller
     {
         $products = Product::all();
 
-        return $products;
+        return view('admins.dashboard.products.index' , ['products' => $products]);
     }
 
     

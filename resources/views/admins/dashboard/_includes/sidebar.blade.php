@@ -2,7 +2,7 @@
     <nav class="sidebar-nav">
         <ul class="nav">
             <li class="nav-item">
-                <a class="nav-link" href="index.html"><i class="icon-speedometer"></i> الصفحة الرئيسية </a>
+                <a class="nav-link" href="{{route('admins.dashboard')}}"><i class="icon-speedometer"></i> الصفحة الرئيسية </a>
             </li>
 
             <li class="nav-title">
