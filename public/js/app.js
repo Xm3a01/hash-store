@@ -2513,6 +2513,30 @@ __webpack_require__.r(__webpack_exports__);
     return {
       number: 1
     };
+  },
+  methods: {
+    increase: function increase(id, quantity) {
+      var _this = this;
+
+      axios.get('/cart-update?id=' + id + '&quantity=' + quantity).then(function (res) {
+        _this.cart = res.data.item;
+        _this.totalPrice = res.data.total;
+      });
+    },
+    decrease: function decrease(id, quantity) {
+      var _this2 = this;
+
+      axios.get('/cart-update?id=' + id + '&quantity=' + quantity).then(function (res) {
+        _this2.cart = res.data.item;
+        _this2.totalPrice = res.data.total;
+        console.log(_this2.total);
+      });
+    },
+    deleteItem: function deleteItem(id) {
+      axios.get('/cart-delete?id=' + id).then(function (res) {
+        console.log(res.data);
+      });
+    }
   }
 });
 
@@ -4237,8 +4261,641 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {}
-var staticRenderFns = []
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "flex justify-center my-6" }, [
+    _c(
+      "div",
+      {
+        staticClass:
+          "flex flex-col w-full p-8 text-gray-800 bg-white shadow-lg pin-r pin-y md:w-4/5 lg:w-4/5"
+      },
+      [
+        _c("div", { staticClass: "flex-1" }, [
+          _c(
+            "table",
+            {
+              staticClass: "w-full text-sm lg:text-base",
+              attrs: { cellspacing: "0" }
+            },
+            [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("tbody", [
+                _vm._m(1),
+                _vm._v(" "),
+                _c("tr", [
+                  _vm._m(2),
+                  _vm._v(" "),
+                  _vm._m(3),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    {
+                      staticClass:
+                        "justify-center md:justify-end md:flex md:mt-4"
+                    },
+                    [
+                      _c("div", { staticClass: "w-20 h-10" }, [
+                        _c(
+                          "div",
+                          { staticClass: "relative flex flex-row w-full h-8" },
+                          [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.number,
+                                  expression: "number"
+                                }
+                              ],
+                              staticClass:
+                                "w-full font-semibold text-center text-gray-700 bg-gray-200 outline-none focus:outline-none hover:text-black focus:text-black",
+                              attrs: { type: "number" },
+                              domProps: { value: _vm.number },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.number = $event.target.value
+                                }
+                              }
+                            })
+                          ]
+                        )
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "hidden text-right md:table-cell" }, [
+                    _c(
+                      "span",
+                      { staticClass: "text-sm lg:text-base font-medium" },
+                      [
+                        _vm._v(
+                          "\n                " +
+                            _vm._s(49600.01 * _vm.number) +
+                            " €\n              "
+                        )
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(4)
+                ]),
+                _vm._v(" "),
+                _vm._m(5)
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c("hr", { staticClass: "pb-6 mt-6" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "my-4 mt-6 -mx-2 lg:flex" }, [
+            _c("div", { staticClass: "lg:px-2 lg:w-1/2" }, [
+              _vm._m(6),
+              _vm._v(" "),
+              _c("div", { staticClass: "p-4" }, [
+                _c("p", { staticClass: "mb-4 italic" }, [
+                  _vm._v(
+                    "If you a coupon code, please enter it in the box below"
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "justify-center md:flex" }, [
+                  _c("form", { attrs: { action: "", method: "POST" } }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "flex items-center w-full h-13 pl-3 bg-white bg-gray-100 border rounded-full"
+                      },
+                      [
+                        _c("input", {
+                          staticClass:
+                            "w-full bg-gray-100 outline-none appearance-none focus:outline-none active:outline-none",
+                          attrs: {
+                            type: "coupon",
+                            name: "code",
+                            id: "coupon",
+                            placeholder: "Apply coupon",
+                            value: "90off"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass:
+                              "text-sm flex items-center px-3 py-1 text-white bg-gray-800 rounded-full outline-none md:px-4 hover:bg-gray-700 focus:outline-none active:outline-none",
+                            attrs: { type: "submit" }
+                          },
+                          [
+                            _c(
+                              "svg",
+                              {
+                                staticClass: "w-8",
+                                attrs: {
+                                  "aria-hidden": "true",
+                                  "data-prefix": "fas",
+                                  "data-icon": "gift",
+                                  xmlns: "http://www.w3.org/2000/svg",
+                                  viewBox: "0 0 512 512"
+                                }
+                              },
+                              [
+                                _c("path", {
+                                  attrs: {
+                                    fill: "currentColor",
+                                    d:
+                                      "M32 448c0 17.7 14.3 32 32 32h160V320H32v128zm256 32h160c17.7 0 32-14.3 32-32V320H288v160zm192-320h-42.1c6.2-12.1 10.1-25.5 10.1-40 0-48.5-39.5-88-88-88-41.6 0-68.5 21.3-103 68.3-34.5-47-61.4-68.3-103-68.3-48.5 0-88 39.5-88 88 0 14.5 3.8 27.9 10.1 40H32c-17.7 0-32 14.3-32 32v80c0 8.8 7.2 16 16 16h480c8.8 0 16-7.2 16-16v-80c0-17.7-14.3-32-32-32zm-326.1 0c-22.1 0-40-17.9-40-40s17.9-40 40-40c19.9 0 34.6 3.3 86.1 80h-86.1zm206.1 0h-86.1c51.4-76.5 65.7-80 86.1-80 22.1 0 40 17.9 40 40s-17.9 40-40 40z"
+                                  }
+                                })
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("span", { staticClass: "font-medium" }, [
+                              _vm._v("Apply coupon")
+                            ])
+                          ]
+                        )
+                      ]
+                    )
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _vm._m(7),
+              _vm._v(" "),
+              _vm._m(8)
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "lg:px-2 lg:w-1/2" }, [
+              _vm._m(9),
+              _vm._v(" "),
+              _c("div", { staticClass: "p-4" }, [
+                _c("p", { staticClass: "mb-6 italic" }, [
+                  _vm._v(
+                    "Shipping and additionnal costs are calculated based on values you have entered"
+                  )
+                ]),
+                _vm._v(" "),
+                _vm._m(10),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "flex justify-between pt-4 border-b" },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "flex lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-gray-800"
+                      },
+                      [
+                        _c("form", { attrs: { action: "", method: "POST" } }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "mr-2 mt-1 lg:mt-2",
+                              attrs: { type: "submit" }
+                            },
+                            [
+                              _c(
+                                "svg",
+                                {
+                                  staticClass:
+                                    "w-4 text-red-600 hover:text-red-800",
+                                  attrs: {
+                                    "aria-hidden": "true",
+                                    "data-prefix": "far",
+                                    "data-icon": "trash-alt",
+                                    xmlns: "http://www.w3.org/2000/svg",
+                                    viewBox: "0 0 448 512"
+                                  }
+                                },
+                                [
+                                  _c("path", {
+                                    attrs: {
+                                      fill: "currentColor",
+                                      d:
+                                        "M268 416h24a12 12 0 0012-12V188a12 12 0 00-12-12h-24a12 12 0 00-12 12v216a12 12 0 0012 12zM432 80h-82.41l-34-56.7A48 48 0 00274.41 0H173.59a48 48 0 00-41.16 23.3L98.41 80H16A16 16 0 000 96v16a16 16 0 0016 16h16v336a48 48 0 0048 48h288a48 48 0 0048-48V128h16a16 16 0 0016-16V96a16 16 0 00-16-16zM171.84 50.91A6 6 0 01177 48h94a6 6 0 015.15 2.91L293.61 80H154.39zM368 464H80V128h288zm-212-48h24a12 12 0 0012-12V188a12 12 0 00-12-12h-24a12 12 0 00-12 12v216a12 12 0 0012 12z"
+                                    }
+                                  })
+                                ]
+                              )
+                            ]
+                          )
+                        ]),
+                        _vm._v(
+                          '\n                    Coupon "90off"\n                  '
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-green-700"
+                      },
+                      [
+                        _vm._v(
+                          "\n                    -133,944.77€\n                  "
+                        )
+                      ]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _vm._m(11),
+                _vm._v(" "),
+                _vm._m(12),
+                _vm._v(" "),
+                _vm._m(13),
+                _vm._v(" "),
+                _c("a", { attrs: { href: "#" } }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass:
+                        "flex justify-center w-full px-10 py-3 mt-6 font-medium text-white uppercase bg-gray-800 rounded-full shadow item-center hover:bg-gray-700 focus:shadow-outline focus:outline-none"
+                    },
+                    [
+                      _c(
+                        "svg",
+                        {
+                          staticClass: "w-8",
+                          attrs: {
+                            "aria-hidden": "true",
+                            "data-prefix": "far",
+                            "data-icon": "credit-card",
+                            xmlns: "http://www.w3.org/2000/svg",
+                            viewBox: "0 0 576 512"
+                          }
+                        },
+                        [
+                          _c("path", {
+                            attrs: {
+                              fill: "currentColor",
+                              d:
+                                "M527.9 32H48.1C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48.1 48h479.8c26.6 0 48.1-21.5 48.1-48V80c0-26.5-21.5-48-48.1-48zM54.1 80h467.8c3.3 0 6 2.7 6 6v42H48.1V86c0-3.3 2.7-6 6-6zm467.8 352H54.1c-3.3 0-6-2.7-6-6V256h479.8v170c0 3.3-2.7 6-6 6zM192 332v40c0 6.6-5.4 12-12 12h-72c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h72c6.6 0 12 5.4 12 12zm192 0v40c0 6.6-5.4 12-12 12H236c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h136c6.6 0 12 5.4 12 12z"
+                            }
+                          })
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "ml-2 mt-5px" }, [
+                        _vm._v("Procceed to checkout")
+                      ])
+                    ]
+                  )
+                ])
+              ])
+            ])
+          ])
+        ])
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", { staticClass: "h-12 uppercase" }, [
+        _c("th", { staticClass: "hidden md:table-cell" }),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-left" }, [_vm._v("Product")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "lg:text-right text-left pl-5 lg:pl-0" }, [
+          _c(
+            "span",
+            { staticClass: "lg:hidden", attrs: { title: "Quantity" } },
+            [_vm._v("Qtd")]
+          ),
+          _vm._v(" "),
+          _c("span", { staticClass: "hidden lg:inline" }, [_vm._v("Quantity")])
+        ]),
+        _vm._v(" "),
+        _c("th", { staticClass: "hidden text-right md:table-cell" }, [
+          _vm._v("Unit price")
+        ]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-right" }, [_vm._v("Total price")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("td", { staticClass: "hidden pb-4 md:table-cell" }, [
+        _c("a", { attrs: { href: "#" } }, [
+          _c("img", {
+            staticClass: "w-20 rounded",
+            attrs: {
+              src:
+                "https://limg.app/i/Calm-Cormorant-Catholic-Pinball-Blaster-yM4oub.jpeg",
+              alt: "Thumbnail"
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("td", [
+        _c("a", { attrs: { href: "#" } }, [
+          _c("p", { staticClass: "mb-2 md:ml-4" }, [_vm._v("Earphone")]),
+          _vm._v(" "),
+          _c("form", { attrs: { action: "", method: "POST" } }, [
+            _c(
+              "button",
+              {
+                staticClass: "text-gray-700 md:ml-4",
+                attrs: { type: "submit" }
+              },
+              [_c("small", [_vm._v("(Remove item)")])]
+            )
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("td", { staticClass: "justify-center md:justify-end md:flex mt-6" }, [
+        _c("div", { staticClass: "w-20 h-10" }, [
+          _c("div", { staticClass: "relative flex flex-row w-full h-8" }, [
+            _c("input", {
+              staticClass:
+                "w-full font-semibold text-center text-gray-700 bg-gray-200 outline-none focus:outline-none hover:text-black focus:text-black",
+              attrs: { type: "number", value: "2" }
+            })
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("td", { staticClass: "hidden text-right md:table-cell" }, [
+        _c("span", { staticClass: "text-sm lg:text-base font-medium" }, [
+          _vm._v("\n                10.00€\n              ")
+        ])
+      ]),
+      _vm._v(" "),
+      _c("td", { staticClass: "text-right" }, [
+        _c("span", { staticClass: "text-sm lg:text-base font-medium" }, [
+          _vm._v("\n                20.00€\n              ")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { staticClass: "hidden pb-4 md:table-cell" }, [
+      _c("a", { attrs: { href: "#" } }, [
+        _c("img", {
+          staticClass: "w-20 rounded",
+          attrs: {
+            src:
+              "https://limg.app/i/Cute-Constrictor-Super-Sexy-Military-Enforcer-W7mvBp.png",
+            alt: "Thumbnail"
+          }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("p", { staticClass: "mb-2 md:ml-4" }, [_vm._v("Tesla Model 3")]),
+      _vm._v(" "),
+      _c("form", { attrs: { action: "", method: "POST" } }, [
+        _c(
+          "button",
+          { staticClass: "text-gray-700 md:ml-4", attrs: { type: "submit" } },
+          [_c("small", [_vm._v("(Remove item)")])]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { staticClass: "text-right" }, [
+      _c("span", { staticClass: "text-sm lg:text-base font-medium" }, [
+        _vm._v("\n                148,800.03€\n              ")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("td", { staticClass: "hidden pb-4 md:table-cell" }, [
+        _c("a", { attrs: { href: "#" } }, [
+          _c("img", {
+            staticClass: "w-20 rounded",
+            attrs: {
+              src:
+                "https://limg.app/i/Successful-Spider-Biblical-Mutant---Total-War-lKoE7D.jpeg",
+              alt: "Thumbnail"
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("td", [
+        _c("p", { staticClass: "mb-2 md:ml-4" }, [_vm._v("Bic 4 colour pen")]),
+        _vm._v(" "),
+        _c("form", { attrs: { action: "", method: "POST" } }, [
+          _c(
+            "button",
+            { staticClass: "text-gray-700 md:ml-4", attrs: { type: "submit" } },
+            [_c("small", [_vm._v("(Remove item)")])]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "td",
+        { staticClass: "justify-center md:justify-end md:flex md:mt-8" },
+        [
+          _c("div", { staticClass: "w-20 h-10" }, [
+            _c("div", { staticClass: "relative flex flex-row w-full h-8" }, [
+              _c("input", {
+                staticClass:
+                  "w-full font-semibold text-center text-gray-700 bg-gray-200 outline-none focus:outline-none hover:text-black focus:text-black",
+                attrs: { type: "number", value: "5" }
+              })
+            ])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c("td", { staticClass: "hidden text-right md:table-cell" }, [
+        _c("span", { staticClass: "text-sm lg:text-base font-medium" }, [
+          _vm._v("\n                1.50€\n              ")
+        ])
+      ]),
+      _vm._v(" "),
+      _c("td", { staticClass: "text-right" }, [
+        _c("span", { staticClass: "text-sm lg:text-base font-medium" }, [
+          _vm._v("\n                7.50€\n              ")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "p-4 bg-gray-100 rounded-full" }, [
+      _c("h1", { staticClass: "ml-2 font-bold uppercase" }, [
+        _vm._v("Coupon Code")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "p-4 mt-6 bg-gray-100 rounded-full" }, [
+      _c("h1", { staticClass: "ml-2 font-bold uppercase" }, [
+        _vm._v("Instruction for seller")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "p-4" }, [
+      _c("p", { staticClass: "mb-4 italic" }, [
+        _vm._v(
+          "If you have some information for the seller you can leave them in the box below"
+        )
+      ]),
+      _vm._v(" "),
+      _c("textarea", { staticClass: "w-full h-24 p-2 bg-gray-100 rounded" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "p-4 bg-gray-100 rounded-full" }, [
+      _c("h1", { staticClass: "ml-2 font-bold uppercase" }, [
+        _vm._v("Order Details")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex justify-between border-b" }, [
+      _c(
+        "div",
+        {
+          staticClass:
+            "lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-center text-gray-800"
+        },
+        [_vm._v("\n                  Subtotal\n                ")]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900"
+        },
+        [_vm._v("\n                  148,827.53€\n                ")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex justify-between pt-4 border-b" }, [
+      _c(
+        "div",
+        {
+          staticClass:
+            "lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-center text-gray-800"
+        },
+        [_vm._v("\n                    New Subtotal\n                  ")]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900"
+        },
+        [_vm._v("\n                    14,882.75€\n                  ")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex justify-between pt-4 border-b" }, [
+      _c(
+        "div",
+        {
+          staticClass:
+            "lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-center text-gray-800"
+        },
+        [_vm._v("\n                    Tax\n                  ")]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900"
+        },
+        [_vm._v("\n                    2,976.55€\n                  ")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex justify-between pt-4 border-b" }, [
+      _c(
+        "div",
+        {
+          staticClass:
+            "lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-center text-gray-800"
+        },
+        [_vm._v("\n                    Total\n                  ")]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900"
+        },
+        [_vm._v("\n                    17,859.3€\n                  ")]
+      )
+    ])
+  }
+]
+render._withStripped = true
 
 
 

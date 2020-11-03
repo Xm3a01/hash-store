@@ -26,7 +26,7 @@ class LoginController extends Controller
 
     public function showAdminLoginForm()
     {
-        return view('admin.auth.Login');
+        return view('admins.auth.Login');
     }
 
 

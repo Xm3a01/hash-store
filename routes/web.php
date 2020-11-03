@@ -21,8 +21,9 @@ Route::group(['prefix' => '/' , 'middleware' => 'auth:admin'] , function(){
     Route::get('dashboard' , 'Admin\IndexController@index')->name('admins.dashboard');
     Route::resource('categories','Admin\Dashboard\CategoryController');
     Route::resource('orders','Admin\Dashboard\OrderController');
+    Route::resource('users','Admin\Dashboard\UserController');
+    Route::resource('products', 'Admin\Dashboard\ProductController');
   });
-  Route::resource('products','Admin\Dashboard\ProductController');
 
 
 
@@ -30,7 +31,7 @@ Route::get('admins/login','Admin\Auth\LoginController@showAdminLoginForm')->name
 Route::post('admins/login', 'Admin\Auth\LoginController@login')->name('admins.login');
 Route::get('logout', 'Admin\Auth\LoginController@logout')->name('logout');
 
-Route::get('products' , 'Website\ProductController@index')->middleware('website');
+Route::get('website-products' , 'Website\ProductController@index')->name('website.products')->middleware('website');
 Route::get('last-products','Website\ProductController@lastProduct')->name('last.products');
 
 // Cart
@@ -47,3 +48,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::view('/ui', 'ui.index');
+
+Route::get('t', function () {
+    return view('admins.dashboard.index');
+});

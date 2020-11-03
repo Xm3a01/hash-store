@@ -17,6 +17,9 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
+        $categories->map(functioin($category){
+            $category['image'] = $category->image
+        });
         return $categories;
     }
 
@@ -30,8 +33,13 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $category = Category::create([
-            'name' => $request->name
+            'name' => $request->name,
+            'description' => $request->description
         ]);
+
+        if($request->hasFile('image')) {
+            $category->addMedia($request->image)->preservingOriginal()->toMediaCollection('categories');
+        }
 
         return $category;
     }

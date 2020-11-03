@@ -69,7 +69,7 @@
             <td class="justify-center md:justify-end md:flex md:mt-4">
             <div class="w-20 h-10">
               <div class="relative flex flex-row w-full h-8">
-              <input type="number" :value="price" v-model="number" 
+              <input type="number"  v-model="number" 
                 class="w-full font-semibold text-center text-gray-700 bg-gray-200 outline-none focus:outline-none hover:text-black focus:text-black" />
               </div>
             </div>
@@ -128,7 +128,7 @@
             <h1 class="ml-2 font-bold uppercase">Coupon Code</h1>
           </div>
           <div class="p-4">
-            <p class="mb-4 italic">If you have a coupon code, please enter it in the box below</p>
+            <p class="mb-4 italic">If you a coupon code, please enter it in the box below</p>
             <div class="justify-center md:flex">
               <form action="" method="POST">
                   <div class="flex items-center w-full h-13 pl-3 bg-white bg-gray-100 border rounded-full">
@@ -221,6 +221,30 @@ export default {
     return {
       number: 1
     }
-  }
+  },
+
+   methods: {
+        increase(id , quantity) {
+            axios.get('/cart-update?id='+id+'&quantity='+quantity)
+             .then((res)=>{
+                 this.cart = res.data.item
+                 this.totalPrice = res.data.total
+             })
+        },
+        decrease(id , quantity){
+            axios.get('/cart-update?id='+id+'&quantity='+quantity)
+             .then((res)=>{
+                 this.cart = res.data.item;
+                 this.totalPrice = res.data.total
+                 console.log(this.total);
+             })
+        },
+        deleteItem(id) {
+            axios.get('/cart-delete?id='+id)
+              .then((res)=>{
+                  console.log(res.data)
+              });
+        }
+    }
 }
 </script>

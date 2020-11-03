@@ -1,0 +1,21 @@
+<div class="sidebar">
+    <nav class="sidebar-nav">
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link" href="index.html"><i class="icon-speedometer"></i> الصفحة الرئيسية </a>
+            </li>
+
+            <li class="nav-title">
+                المحتويات
+            </li>
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link " href="{{route('users.index')}}"><i class="icon-user"></i> المستخدمين</a>
+                <a class="nav-link " href="{{route('products.index')}}"><i class="icon-paypal"></i> المنتجات</a>
+                <a class="nav-link " href="{{route('categories.index')}}"><i class="icon-tag"></i> التصنيفات</a>
+                <a class="nav-link " href="{{route('orders.index')}}"><i class="icon-handbag"></i> الطالبات</a>
+              
+            </li>
+
+        </ul>
+    </nav>
+</div>
