@@ -1,7 +1,7 @@
 
 <div class="container-fluid">
     <ul class="nav navbar-nav pull-right hidden-md-down">
-        <img src="img//Logo.jpg" class="img-avatar" alt="E-store.com">
+        <img src="{{asset('vendor/img/Logo.jpg')}}" class="img-avatar" alt="E-store.com">
         <li class="nav-item">
             <a class="nav-link navbar-toggler layout-toggler" href="#">&#9776;</a>
         </li>
@@ -15,7 +15,7 @@
         
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                <img src="img//user.jpg" class="img-avatar" alt="E-store.com">
+                <img src="{{asset('vendor/img/user.jpg')}}" class="img-avatar" alt="E-store.com">
                 <span class="hidden-md-down">المدير</span>
                 
                 
