@@ -2,11 +2,6 @@
 
 @section('content')
 
-        <!-- Breadcrumb -->
-        <ol class="breadcrumb">
-          
-        </ol>
-
         <div class="container-fluid">
 
             <div class="animated fadeIn">
@@ -16,7 +11,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <a class="nav-link " href="admin_addproduct.html"><button class="btn btn-primary" > + اضافة </button></a>
+                                <a class="nav-link " href="{{route('products.create')}}"><button class="btn btn-primary" > + اضافة </button></a>
 
                                  <i class="fa fa-align-justify"></i>    كل المنتجات  
                             </div>
@@ -28,19 +23,41 @@
                                         <th>اسم المنتج</th> 
                                         <th>الصورة</th>
                                         <th>اللون</th>
-                                        <th>اللون المتوفر</th> 
                                         <th>الحجم</th>
-                                        <th>الحم المتوفر</th>
                                         <th>الخصم  </th> 
-                                        <th>الخصم المتوفر</th>
                                         <th>السعر</th>
-                                        <th>الكمية </th> 
                                         <th>الوصف</th>
-                                        <th>ملاحظات</th>
-                                        <th><a class="nav-link " href="admin_editproduct.html">تعديل</a></th>
+                                        <th>الكميه في الطلب</th>
+                                        <th>التصنيف</th>
+                                        <th>العمليات</th>
                                               
                                         </tr>
                                     </thead>
+                                    <tbody>
+                                        @foreach ($products as $product)
+                                            
+                                        <tr>
+                                            <td>{{$product->id}}</td>
+                                            <td>{{$product->name}}</td>
+                                            <td><img src="{{$product->image}}" alt="" height="45" width="45"></td>
+                                            <td><div style="background: {{$product->color}}; height:45px; width:45px; "></div></td>
+                                            <td>{{$product->availableSize}}</td>
+                                            <td>{{$product->disCount}}</td>
+                                            <td>{{$product->price}} {{$product->unitPrice}}</td>
+                                            <td>{{$product->description}}</td>
+                                            <td> سقف الطلبات {{$product->unitOnOrder}}</td>
+                                            <td>{{$product->category->name}}</td>
+                                            <td>
+                                                <form action="{{route('products.destroy' , $product->id)}}" method="POST">
+                                                 @csrf
+                                                 @method('delete')
+                                                 <a href="{{route('products.edit' , $product->id)}}">edit</a>
+                                                 <button type="submit">delete</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
 
 
                                       </div>

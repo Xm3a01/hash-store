@@ -1,11 +1,11 @@
-<footer class="footer">
+{{-- <footer class="footer">
     <span class="text-left">
         <a href="http://coreui.io">CoreUI</a> &copy; 2016 creativeLabs.
     </span>
     <span class="pull-right">
         Powered by <a href="http://coreui.io">CoreUI</a>
     </span>
-</footer>
+</footer> --}}
 <!-- Bootstrap and necessary plugins -->
 <script src="{{asset('vendor/js/libs/jquery.min.js')}}"></script>
 <script src="{{asset('vendor/js/libs/tether.min.js')}}"></script>

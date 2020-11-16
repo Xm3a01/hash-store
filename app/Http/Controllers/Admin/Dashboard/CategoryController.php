@@ -29,10 +29,11 @@ class CategoryController extends Controller
    
     public function store(Request $request)
     {
-        $category = Category::create([
-            'name' => $request->name,
-            'description' => $request->description
-            ]);
+        $this->validate($request , [
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+        $category = Category::create($request->all());
             
             if($request->hasFile('image')) {
              $category->addMedia($request->image)->preservingOriginal()->toMediaCollection('categories');
@@ -48,20 +49,28 @@ class CategoryController extends Controller
     }
 
   
-    public function edit($id)
+    public function edit(Category $category)
     {
-        //
+        return view('admins.dashboard.categories.edit' , ['category' => $category]);
     }
-    public function update(CategoryRequest $request, Category $category)
+    public function update(Request $request, Category $category)
     {
-        $category->update([
-            'name' => $request->name
-        ]);
+        $category->update($request->all());
+
+        if($request->hasFile('image')) {
+            $category->clearMediaCollection('categories');
+            $category->addMedia($request->image)->preservingOriginal()->toMediaCollection('categories');
+       }
+
+       return redirect()->route('categories.index');
     }
 
    
     public function destroy(Category $category)
     {
+        $category->clearMediaCollection('categories');
         $category->delete();
+       return redirect()->route('categories.index');
+
     }
 }

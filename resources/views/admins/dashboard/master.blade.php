@@ -6,7 +6,7 @@
  * @license MIT
  -->
  <!DOCTYPE html>
- <html lang="IR-fa" dir="rtl">
+ <html lang="ar" dir="rtl">
  
  <head>
      <meta charset="utf-8">
@@ -20,16 +20,6 @@
 
      @include('admins.dashboard._includes.styles')
     </head>
- <!-- BODY options, add following classes to body to change options
-         1. 'compact-nav'     	  - Switch sidebar to minified version (width 50px)
-         2. 'sidebar-nav'		  - Navigation on the left
-             2.1. 'sidebar-off-canvas'	- Off-Canvas
-                 2.1.1 'sidebar-off-canvas-push'	- Off-Canvas which move content
-                 2.1.2 'sidebar-off-canvas-with-shadow'	- Add shadow to body elements
-         3. 'fixed-nav'			  - Fixed navigation
-         4. 'navbar-fixed'		  - Fixed navbar
-     -->
- 
  <body class="navbar-fixed sidebar-nav fixed-nav">
      <header class="navbar">
          @include('admins.dashboard._includes.navbar')
@@ -40,7 +30,7 @@
 
          @yield('content')
 
-         {{-- @include('admins.dashboard._includes.scripts') --}}
+         @include('admins.dashboard._includes.scripts')
      </main>
 
      

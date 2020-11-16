@@ -23,7 +23,7 @@
                                 <th>اسم الصنف</th> 
                                 <th>الوصف</th>
                                 <th>الصورة</th>
-                                <th><a class="nav-link " href="admin_editcategory.html">تعديل</a></th>
+                                <th>العمليات</th>
                                    
                                    
                                     
@@ -36,7 +36,14 @@
                                      <td>{{$category->name}}</td>
                                      <td>{{$category->description}}</td>
                                      <td><img src="{{$category->image}}" height="40" width="40" alt="" style="border-radius: 50%"></td>
-                                     <td>ed</td>
+                                     <td>
+                                         <form action="{{route('categories.destroy' , $category->id)}}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <a href="{{route('categories.edit' , $category->id)}}">edit</a>
+                                            <button type="submit">delete</button>
+                                        </form>
+                                     </td>
                                     </tr>
                                     @endforeach
                             </tbody>

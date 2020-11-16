@@ -17,8 +17,8 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/' , 'IndexController@index')->name('index');
-Route::group(['prefix' => '/' , 'middleware' => 'auth:admin'] , function(){
-    Route::get('dashboard' , 'Admin\IndexController@index')->name('admins.dashboard');
+Route::group(['prefix' => '/dashboard' , 'middleware' => 'auth:admin'] , function(){
+    Route::get('/' , 'Admin\IndexController@index')->name('admins.dashboard');
     Route::resource('categories','Admin\Dashboard\CategoryController');
     Route::resource('orders','Admin\Dashboard\OrderController');
     Route::resource('users','Admin\Dashboard\UserController');

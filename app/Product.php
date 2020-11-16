@@ -11,7 +11,18 @@ class Product extends Model implements HasMedia
 {
     use InteractsWithMedia;
 
-    protected $fillable = ['name', 'description' , 'price' , 'category_id' , 'image'];
+    protected $fillable = [
+        'name', 
+        'description' , 
+        'price' , 
+        'category_id' , 
+        'availableSize',
+        'disCount',
+        'productAvailable',
+        'unitPrice',
+        'unitOnOrder',
+        'color'
+    ];
 
 
     public function category()
