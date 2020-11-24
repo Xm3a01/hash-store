@@ -15,10 +15,9 @@
         
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                <img src="{{Auth::user()->avatar}}"  height="40" width="40" style="border-radius: 50%" class="img-avatar" alt="E-store.com">
-                <span class="hidden-md-down">{{Auth::user()->name}}</span>
-                
-                
+
+                <img src="{{Auth::user()->avatar}}"  height="40" width="38" style="border-radius: 50%" class="img-avatar" alt="E-store.com">
+                <span class="hidden-md-down">{{Auth::user()->name}}</span>            
             </a>
             <div class="dropdown-menu dropdown-menu-right">
                 <div class="dropdown-header text-xs-center">

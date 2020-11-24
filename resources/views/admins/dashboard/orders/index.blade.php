@@ -52,8 +52,7 @@
                                             </tr>
                                         @endforeach
                                     </tbody>
-                    
-
+                
                                     </div>
                                     <!--/row-->
 

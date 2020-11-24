@@ -21,7 +21,7 @@
                 <div class="card">
                     <div class="card-block p-a-2">
                         <h1>اضافة صنف جديد</h1>
-                      <form class="form-control" action ="{{route('orders.store')}}" method="post" enctype="multipart/form-data">
+                   <form class="form-control" action ="{{route('orders.store')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="input-group m-b-1">
                              
@@ -81,4 +81,4 @@
 
 </div>
 <!--/.container-fluid-->
-   @endsection
+@endsection

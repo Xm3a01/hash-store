@@ -17,6 +17,7 @@
                     <div class="card-block p-a-2">
                     
                         <h1>تعديل صنف </h1>
+
                         <form class="form-control" action="{{route('orders.update' , $order->id)}}" method="post" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')

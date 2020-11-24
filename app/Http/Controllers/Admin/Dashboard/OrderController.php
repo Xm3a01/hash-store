@@ -21,6 +21,7 @@ class OrderController extends Controller
     
     public function create()
     {
+
         $users = User::all();
         return view('admins.dashboard.orders.create' , ['users' => $users]);
     }

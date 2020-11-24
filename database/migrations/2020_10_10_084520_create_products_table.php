@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('availableSize');
-            $table->float('disCount');
+            $table->float('disCount')->default(0);
             $table->boolean('productAvailable')->default(1);
             $table->string('unitPrice');
             $table->string('color');
