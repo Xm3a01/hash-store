@@ -25,7 +25,7 @@ class OrderRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'totalPrice' => 'required',
+            'price' => 'required',
             'quantity' => 'required',
             'user_id' => 'sometimes'
         ];

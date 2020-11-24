@@ -80,6 +80,10 @@
                                  @endforeach
                              </select>
                         </div>
+                        <div class="input-group m-b-1">
+                            <label>   المنتج متوفر&ensp; &ensp; &ensp; </label>
+                            <input type="checkbox" name="productAvailable" value="1"  {{$product->productAvailable ? 'checked' : ''}} > &ensp; &ensp; &ensp;                    
+                        </div>
                         <div>
                         <button  type="submit" class="btn btn-block btn-success">
                            

@@ -40,8 +40,8 @@
                                          <form action="{{route('categories.destroy' , $category->id)}}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <a href="{{route('categories.edit' , $category->id)}}">edit</a>
-                                            <button type="submit">delete</button>
+                                            <a style="color:white" class="nav-link btn  btn-info"  href="{{route('categories.edit' , $category->id)}}"><i class="fa fa-edit"></i></a>
+                                            <button class="btn btn-danger nav-link" type="submit" ><i class="fa fa-trash"></i></button>
                                         </form>
                                      </td>
                                     </tr>

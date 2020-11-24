@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Admin\Dashboard;
 
-use App\User;
+use App\Admin;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +17,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return view('admins.dashboard.users.index' , ['users' => $users]);
+        $admins = Admin::all();
+        return view('admins.dashboard.admins.index' , ['admins' => $admins]);
     }
 
     /**
@@ -28,7 +28,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admins.dashboard.users.create');
+        return view('admins.dashboard.admins.create');
     }
 
     /**
@@ -43,20 +43,19 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required',
             'password' => 'required',
-            'phone' => 'required',
         ]);
 
         $data['password']  = Hash::make($request->password);
 
-        $user = User::create($data);
+        $admin = Admin::create($data);
 
         if ($request->has('avatar')) {
-            // $user->clearMediaCollection('avatars');
-            $user->addMedia($request->avatar)->preservingOriginal()->toMediaCollection('avatars');
+            // $admin->clearMediaCollection('avatars');
+            $admin->addMedia($request->avatar)->preservingOriginal()->toMediaCollection('avatars');
         }
 
-        \Session::flash('success' , 'تم حفظ المستخدم بنجاح');
-        return redirect()->route('users.index');
+        \Session::flash('success' , 'تم حفظ المشرف بنجاح');
+        return redirect()->route('admins.index');
     }
 
     /**
@@ -76,9 +75,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(Admin $admin)
     {
-        return view('admins.dashboard.users.edit' , ['user' => $user]);
+        return view('admins.profile.edit' , ['admin' => $admin]);
     }
 
     /**
@@ -88,23 +87,23 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, Admin $admin)
     {
-        $user->update($request->except(['avatar' , 'password']));
+        $admin->update($request->except(['avatar' , 'password']));
 
         if($request->has('password') && $request->password != ''){
-            $user->password = Hash::make($request->password);
-            $user->save();
+            $admin->password = Hash::make($request->password);
+            $admin->save();
         }
 
 
         if ($request->hasFile('avatar')) {
-            $user->clearMediaCollection('avatars');
-            $user->addMedia($request->avatar)->preservingOriginal()->toMediaCollection('avatars');
+            $admin->clearMediaCollection('avatars');
+            $admin->addMedia($request->avatar)->preservingOriginal()->toMediaCollection('avatars');
         }
 
-        \Session::flash('success' , 'تم تعديل المستخدم بنجاح');
-        return redirect()->route('users.index');
+        \Session::flash('success' , 'تم تعديل المشرف بنجاح');
+        return back();
 
     }
 
@@ -114,12 +113,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(admin $admin)
     {
-        $user->clearMediaCollection('avatars');
-        $user->delete();
+        $admin->clearMediaCollection('avatars');
+        $admin->delete();
 
-        \Session::flash('success' , 'تم حذف المستخدم بنجاح');
-        return redirect()->route('users.index');
+        \Session::flash('success' , 'تم حذف المشرف بنجاح');
+        return redirect()->route('admins.index');
     }
 }

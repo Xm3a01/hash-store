@@ -31,6 +31,7 @@
          @yield('content')
 
          @include('admins.dashboard._includes.scripts')
+         @include('admins.dashboard._includes.messages')
      </main>
 
      

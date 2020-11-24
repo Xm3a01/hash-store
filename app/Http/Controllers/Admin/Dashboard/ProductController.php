@@ -13,10 +13,7 @@ class ProductController extends Controller
    
     public function index()
     {
-        $products = Product::all();
-        // return $products->map(function($product){
-        //     $product['image'] = $product->image;
-        // });
+        $products = Product::where('productAvailable' , 1)->get();
         return view('admins.dashboard.products.index' , ['products' => $products]);
     }
 
@@ -44,9 +41,10 @@ class ProductController extends Controller
 
         $product = Product::create($request->all());
             
-            if($request->hasFile('image')) {
-                $product->addMedia($request->image)->preservingOriginal()->toMediaCollection('products');
-            }
+        if($request->hasFile('image')) {
+            $product->addMedia($request->image)->preservingOriginal()->toMediaCollection('products');
+        }
+        \Session::flash('success' , 'تم حفظ المنتج بنجاح');
         return redirect()->route('products.index');
     }
 
@@ -68,12 +66,20 @@ class ProductController extends Controller
    
     public function update(Request $request, Product $product)
     {
-        $product->update($request->all());
+        $data = $request->all();
+
+        if($request->productAvailable == 1)
+          $data['productAvailable'] =  1;
+        else 
+          $data['productAvailable'] = 0;
+
+        $product->update($data);
         if ($request->hasFile('image')) {
             $product->clearMediaCollection('products');
             $product->addMedia($request->image)->preservingOriginal()->toMediaCollection('products');
         }
 
+        \Session::flash('success' , 'تم حفظ المنتج بنجاح');
         return redirect()->route('products.index');
     }
 
@@ -87,6 +93,8 @@ class ProductController extends Controller
     {
         $product->clearMediaCollection('products');
         $product->delete();
-        return \redirect()->route('products.index');
+
+        \Session::flash('success' , 'تم حفظ المنتج بنجاح');
+        return redirect()->route('products.index');
     }
 }

@@ -15,82 +15,38 @@
                                     <div class="col-md-5 m-x-auto pull-xs-none vamiddle">
                                         <div class="card">
                                             <div class="card-block p-a-2">
-                                                <h1>اضافة منتج جديد</h1>
-                                                <form class="form-control" action="{{route('products.store')}}" method="post" enctype="multipart/form-data">
+                                                <h1>اضافة مستخدم جديد</h1>
+                                                <form class="form-control" action="{{route('users.store')}}" method="post" enctype="multipart/form-data">
                                                     @csrf
                                                     <div class="input-group m-b-1">
-
-
-                                                        <input type="text" class="form-control" name="name"
-                                                            placeholder=" اسم المنتج ">
+                             
+                             
+                                                        <input type="text" name="name" class="form-control" placeholder=" اسم المستخدم ">
                                                     </div>
                                                     <div class="input-group m-b-1">
+                                                        
+                                                        
+                                                       <input type="email" name="email" class="form-control" placeholder="  عنوان البريد ">
+                                                   </div>
+                                                   <div class="input-group m-b-1">
+                                                        
+                                                        
+                                                       <input type="phone"  name="phone" class="form-control" placeholder=" رقم الهاتف ">
+                                                   </div>
+                                                   <div class="input-group m-b-1">
+                                                        
+                                                        
+                                                       <input type="password" name="password" class="form-control" placeholder="  كلمة السر ">
+                                                   </div>
+                                                   <div class="input-group m-b-1">
 
-                                                        <input type="file" class="form-control " name="image">
-                                                    </div>
-                                                    <div class="input-group m-b-1">
-
-
-                                                        <label> اختر لون المنتج </label> &ensp; &ensp; &ensp;
-                                                        <input type="color" id="favcolor" name="color"
-                                                            value="">
-                                                    </div>
-                                                    {{-- <div class="input-group m-b-1">
-
-
-                                                        <label> اختر الألوان المتاحة من المنتج </label> &ensp; &ensp;
-                                                        &ensp;
-                                                        <input type="color" id="favcolor" name="favcolor"
-                                                            value="#123456">
-                                                    </div> --}}
-                                                    <div class="input-group m-b-1">
-
-
-                                                        <input type="number" step="0.01" class="form-control" name="availableSize"
-                                                            placeholder=" حجم المنتج ">
-                                                    </div>
-                                                   
-                                                    <div class="input-group m-b-1">
-                                                        <input type="number" step="0.01" class="form-control" name="disCount"
-                                                            placeholder="  الخصم  ">
-                                                    </div>
-                                                   
-                                                    <div class="input-group m-b-1">
-
-
-                                                        <input type="number" step="0.01" class="form-control" name="price"
-                                                            placeholder="  السعر ">
-                                                    </div>
-                                                    <div class="input-group m-b-1">
-
-
-                                                        <input type="number" class="form-control" name="unitOnOrder"
-                                                            placeholder="  الكمية ">
-                                                    </div>
-                                                    <div class="input-group m-b-1">
-
-
-                                                        <input type="text" class="form-control" placeholder="  الوصف " name="description">
-                                                    </div>
-                                                    <div class="input-group m-b-1">
-
-
-                                                        <input type="hidden" class="form-control" name="unitPrice" value="SDG"
-                                                            placeholder="  ملاحظات ">
-                                                    </div>
-                                                    <div class="input-group m-b-1">
-                                                        <select name="category_id" id="" class="form-control">
-                                                            <option value="">تصنيف المنتج</option>
-                                                            @foreach ($categories as $category)
-                                                                <option value="{{$category->id}}">{{$category->id}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
+                                                    <input type="file" class="form-control " name="avatar">
+                                                 </div>
                                                     <div>
-                                                        <button type="submit" class="btn btn-block btn-success">
-
-                                                            اضافة <i class="icon-plus"></i></button>
-                                                    </div>
+                                                    <button type="submit" class="btn btn-block btn-success">
+                                                       
+                                                        اضافة      <i class="icon-plus"></i></button>
+                                                </div>
                                                 </form>
                                             </div>
                                         </div>

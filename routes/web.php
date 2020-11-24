@@ -23,13 +23,13 @@ Route::group(['prefix' => '/dashboard' , 'middleware' => 'auth:admin'] , functio
     Route::resource('orders','Admin\Dashboard\OrderController');
     Route::resource('users','Admin\Dashboard\UserController');
     Route::resource('products', 'Admin\Dashboard\ProductController');
+    Route::resource('admins', 'Admin\Dashboard\AdminController');
   });
 
 
+  require __DIR__.'/admin.php';
 
-Route::get('admins/login','Admin\Auth\LoginController@showAdminLoginForm')->name('admins.login');
-Route::post('admins/login', 'Admin\Auth\LoginController@login')->name('admins.login');
-Route::get('logout', 'Admin\Auth\LoginController@logout')->name('logout');
+
 
 Route::get('website-products' , 'Website\ProductController@index')->name('website.products')->middleware('website');
 Route::get('last-products','Website\ProductController@lastProduct')->name('last.products');
@@ -49,6 +49,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::view('/ui', 'ui.index');
 
-Route::get('t', function () {
-    return view('admins.dashboard.index');
+Route::get('sinOut', function () {
+  Auth::guard('web')->logout();
+  return redirect()->route('login');
 });

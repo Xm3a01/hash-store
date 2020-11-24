@@ -27,7 +27,7 @@
                                         <th>الخصم  </th> 
                                         <th>السعر</th>
                                         <th>الوصف</th>
-                                        <th>الكميه في الطلب</th>
+                                        {{-- <th>الكميه في الطلب</th> --}}
                                         <th>التصنيف</th>
                                         <th>العمليات</th>
                                               
@@ -45,14 +45,14 @@
                                             <td>{{$product->disCount}}</td>
                                             <td>{{$product->price}} {{$product->unitPrice}}</td>
                                             <td>{{$product->description}}</td>
-                                            <td> سقف الطلبات {{$product->unitOnOrder}}</td>
+                                            {{-- <td> سقف الطلبات {{$product->unitOnOrder}}</td> --}}
                                             <td>{{$product->category->name}}</td>
                                             <td>
                                                 <form action="{{route('products.destroy' , $product->id)}}" method="POST">
                                                  @csrf
                                                  @method('delete')
-                                                 <a href="{{route('products.edit' , $product->id)}}">edit</a>
-                                                 <button type="submit">delete</button>
+                                                 <a style="color:white" class="nav-link btn  btn-info"  href="{{route('products.edit' , $product->id)}}"><i class="fa fa-edit"></i></a>
+                                                 <button class="btn btn-danger nav-link" type="submit" ><i class="fa fa-trash"></i></button>
                                                 </form>
                                             </td>
                                         </tr>

@@ -82,7 +82,7 @@
                                                         <select name="category_id" id="" class="form-control">
                                                             <option value="">تصنيف المنتج</option>
                                                             @foreach ($categories as $category)
-                                                                <option value="{{$category->id}}">{{$category->id}}</option>
+                                                                <option value="{{$category->id}}">{{$category->name}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>

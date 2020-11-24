@@ -39,6 +39,7 @@ class CategoryController extends Controller
              $category->addMedia($request->image)->preservingOriginal()->toMediaCollection('categories');
         }
 
+        \Session::flash('success' , 'تم حفظ التصنيف بنجاح');
         return redirect()->route('categories.index');
     }
 
@@ -62,6 +63,7 @@ class CategoryController extends Controller
             $category->addMedia($request->image)->preservingOriginal()->toMediaCollection('categories');
        }
 
+       \Session::flash('success' , 'تم تعديل التصنيف بنجاح');
        return redirect()->route('categories.index');
     }
 
@@ -70,7 +72,9 @@ class CategoryController extends Controller
     {
         $category->clearMediaCollection('categories');
         $category->delete();
-       return redirect()->route('categories.index');
+
+        \Session::flash('success' , 'تم حذف التصنيف بنجاح');
+        return redirect()->route('categories.index');
 
     }
 }

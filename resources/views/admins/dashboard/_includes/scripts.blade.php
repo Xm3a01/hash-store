@@ -23,5 +23,7 @@
 <!-- Custom scripts required by this view -->
 <script src="{{asset('vendor/js/views/main.js')}}"></script>
 
+<script src="{{asset('vendor/js/toastr.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('vendor/js/ui-toastr.min.js')}}" type="text/javascript"></script>
 <!-- Grunt watch plugin -->
 {{-- <script src="//localhost:35729/livereload.js"></script> --}}

@@ -1,7 +1,7 @@
 
 <div class="container-fluid">
     <ul class="nav navbar-nav pull-right hidden-md-down">
-        <img src="img//Logo.jpg" class="img-avatar" alt="E-store.com">
+        <img src="{{asset('vendor/img/Logo.jpg')}}" class="img-avatar" alt="E-store.com">
         <li class="nav-item">
             <a class="nav-link navbar-toggler layout-toggler" href="#">&#9776;</a>
         </li>
@@ -15,8 +15,8 @@
         
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                <img src="img//user.jpg" class="img-avatar" alt="E-store.com">
-                <span class="hidden-md-down">المدير</span>
+                <img src="{{Auth::user()->avatar}}"  height="40" width="40" style="border-radius: 50%" class="img-avatar" alt="E-store.com">
+                <span class="hidden-md-down">{{Auth::user()->name}}</span>
                 
                 
             </a>
@@ -25,8 +25,8 @@
                     <strong>الحساب</strong>
                 </div>
                 
-                <a class="dropdown-item" href="#"><i class="icon-settings"></i> إعدادات الحساب</a>
-                <a class="dropdown-item" href="#"><i class="fa fa-lock"></i> خروج</a>
+                <a class="dropdown-item" href="{{route('admins.edit' , Auth::user()->id)}}"><i class="icon-settings"></i> إعدادات الحساب</a>
+                <a class="dropdown-item" href="{{route('admins.logout')}}"><i class="fa fa-lock"></i> خروج</a>
             </div>
         </li>
         <li class="nav-item">

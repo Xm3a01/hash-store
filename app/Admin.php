@@ -2,13 +2,15 @@
 
 namespace App;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Admin  extends Authenticatable
+class Admin  extends Authenticatable implements HasMedia
 {
-    use Notifiable;
+    use Notifiable , InteractsWithMedia;
 
     protected $guard = 'admin';
 
@@ -38,4 +40,9 @@ class Admin  extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getAvatarAttribute()
+    {
+        return $this->getFirstMediaUrl('avatars');
+    }
 }

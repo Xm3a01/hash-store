@@ -11,7 +11,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <!--a class="nav-link " href="admin_addcategory.html"><button class="btn btn-primary" > + اضافة </button></a-->
+                                <a class="nav-link btn btn-primary" href="{{route('users.create')}}"> + اضافة </a>
 
                                  <i class="fa fa-align-justify"></i>    كل الطلبات  
                             </div>
@@ -23,6 +23,7 @@
                                         <th>اسم المستخدم</th>
                                         <th>عنوان البريد </th>
                                         <th>رقم الهاتف </th> 
+                                        <th> الصوره </th>
                                         
                                         
                                         <th>العمليات</th>
@@ -39,12 +40,13 @@
                                             <td>{{$user->name}}</td>
                                             <td>{{$user->email}}</td>
                                             <td>{{$user->phone}}</td>
+                                            <td><img src="{{$user->avatar}}" height="40" width="40" style="border-radius: 50%" alt=""></td>
                                             <td>
                                                 <form action="{{route('users.destroy' , $user->id)}}" method="post">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <a href="{{route('users.edit' , $user->id)}}">edit</a>
-                                                    <button type="submit">delete</button>
+                                                    <a style="color:white" class="nav-link btn  btn-info"  href="{{route('users.edit' , $user->id)}}"><i class="fa fa-edit"></i></a>
+                                                    <button class="btn btn-danger nav-link" type="submit" ><i class="fa fa-trash"></i></button>
                                                 </form>
                                             </td>
                                         </tr>

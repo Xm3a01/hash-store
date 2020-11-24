@@ -21,25 +21,21 @@
                 <div class="card">
                    <div class="card-block p-a-2">
 
-                        <h1>تعديل المستخدم </h1>
-                      <form action="{{route('users.update' , $user->id)}}" method="post" enctype="multipart/form-data">
+                        <h1> الضبط </h1>
+                      <form action="{{route('admins.update' , $admin->id)}}" method="post" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="input-group m-b-1">
                              
                              
-                                <input type="text" name="name" class="form-control" placeholder=" اسم المستخدم " value="{{$user->name}}">
+                                <input type="text" name="name" class="form-control" placeholder=" اسم المستخدم " value="{{$admin->name}}">
                             </div>
                             <div class="input-group m-b-1">
                                 
                                 
-                               <input type="email" name="email" class="form-control" placeholder="  عنوان البريد " value="{{$user->email}}">
+                               <input type="email" name="email" class="form-control" placeholder="  عنوان البريد " value="{{$admin->email}}">
                            </div>
-                           <div class="input-group m-b-1">
-                                
-                                
-                               <input type="phone"  name="phone" class="form-control" placeholder=" رقم الهاتف " value="{{$user->phone}}">
-                           </div>
+
                            <div class="input-group m-b-1">
                                 
                                 

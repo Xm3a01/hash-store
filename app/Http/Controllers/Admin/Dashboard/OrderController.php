@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin\Dashboard;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\OrderRequest;
+use App\User;
 use App\Order;
 use Illuminate\Http\Request;
+use App\Http\Requests\OrderRequest;
+use App\Http\Controllers\Controller;
 
 class OrderController extends Controller
 {
@@ -20,20 +21,20 @@ class OrderController extends Controller
     
     public function create()
     {
-        
+        $users = User::all();
+        return view('admins.dashboard.orders.create' , ['users' => $users]);
     }
 
     
     public function store(OrderRequest $request)
     {
-        $order = Order::create([
-            'name' => $request->name,
-            'totalPrice' => $request->totalPrice,
-            'quantity' => $request->quantity,
-            'user_id' => $request->user_id,
-        ]);
+        $data = $request->all();
+        $data['totalPrice'] = $request->price * $request->quantity;
+         
+        $order = Order::create($data);
 
-        return $order;
+        \Session::flash('success' , 'تم حفظ الطلب بنجاح');
+        return redirect()->route('orders.index');
     }
 
     
@@ -43,24 +44,33 @@ class OrderController extends Controller
     }
 
     
-    public function edit($id)
+    public function edit(Order $order)
     {
-        //
+        $users = User::all();
+        return view('admins.dashboard.orders.edit' , [
+            'order' => $order,
+            'users' => $users
+            ]);
     }
 
     
     public function update(OrderRequest $request, Order $order)
     {
-        $order->update([
-            'name' => $request->name,
-            'totalPrice' => $request->totalPrice,
-            'quantity' => $request->quantity,
-        ]);
+        $data = $request->all();
+        $data['totalPrice'] = $request->price * $request->quantity;
+        
+        $order->update($data);
+
+        \Session::flash('success' , 'تم تعديل الطلب بنجاح');
+        return redirect()->route('orders.index');
     }
 
     
     public function destroy(Order $order)
     {
         $order->delete();
+
+        \Session::flash('success' , 'تم حذف الطلب بنجاح');
+        return redirect()->route('orders.index');
     }
 }
