@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Website;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
@@ -26,6 +27,6 @@ class IndexController extends Controller
         if(Auth::check()) {
             $user = Auth::user()->name;
         }
-        return view('index' ,['user' => $user ?? '' ]);
+        return view('website.index' ,['user' => $user ?? '' ]);
     }
 }

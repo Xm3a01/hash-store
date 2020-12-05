@@ -7,8 +7,11 @@ Vue.component('base-header', require('./components/UI/BaseHeader').default);
 Vue.component('base-panel', require('./components/UI/BasePanel').default);
 Vue.component('base-input', require('./components/UI/BaseInput').default);
 Vue.component('base-sidebar', require('./components/UI/BaseSidebar').default);
-Vue.component('vue-header', require('./layouts/Header').default);
-Vue.component('vue-page', require('./pages/Index').default);
+//
+Vue.component('vue-page', require('./Website/pages/Index').default);
+Vue.component('cart', require('./Website/pages/Cart/Cart').default);
+Vue.component('vue-category', require('./Website/pages/Category').default);
+Vue.component('vue-product', require('./Website/pages/Product').default);
 
 const app = new Vue({
     el: '#app',

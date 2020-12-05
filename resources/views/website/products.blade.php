@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-  <vue-page />  //This file coming from Vue js 
+<vue-product />
+<div class="loader"></div>
 @endsection

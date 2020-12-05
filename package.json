@@ -24,6 +24,7 @@
     },
     "dependencies": {
         "vue": "^2.6.12",
+        "vue-slick-carousel": "^1.0.6",
         "watch": "^1.0.2"
     }
 }

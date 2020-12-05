@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 
 use Cart;
 use App\Product;
+use App\Traits\Mapping;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
+    use Mapping;
 
     public function cartItems()
     {
@@ -32,6 +34,8 @@ class CartController extends Controller
     {
            $total = 0;
            $product = Product::findOrFail($id);
+        //    $this->convert_to_map($product);
+
             if(Auth::check()){
             $userId = Auth::user()->id;
             $item =  Cart::session($userId)->add([
@@ -39,6 +43,8 @@ class CartController extends Controller
                     'name' => $product->name,
                     'price' => $product->price,
                     'quantity' => 1,
+                    'attributes' => array('image' => $product->image),
+                    'associatedModel' => $product
             ]);
 
             $total = Cart::session($userId)->getTotal();
@@ -49,6 +55,8 @@ class CartController extends Controller
                     'name' => $product->name,
                     'price' => $product->price,
                     'quantity' => 1,
+                    'attributes' => array('image' => $product->image),
+                    'associatedModel' => $product
                 ]);
 
                 $total = Cart::getTotal();
@@ -63,23 +71,33 @@ class CartController extends Controller
 
     public function updateItem(Request $request)
     {
+        $item = Cart::get($request->id);
         if(Auth::check()) {
             $userId = Auth::user()->id;
+            Cart::get($request->id)->quantity;
             $item =  Cart::session($userId)->update($request->id , [
-                'quantity' => $request->quantity,
+                'quantity' => array(
+                    'relative' => false,
+                    'value' => $request->quantity
+                ),
             ]);
             return response()->json([
-                'item' => Cart::session($userId)->getContent() , 
-                'total' => Cart::session($userId)->getTotal()
+                'item' => $item , 
+                'total' => Cart::session($userId)->getTotal(),
+                'count' => Cart::getTotalQuantity(),
                 ]);
         } else {
             $item = Cart::update($request->id , array(
-                'quantity' => $request->quantity,
+                'quantity' => array(
+                    'relative' => false,
+                    'value' => $request->quantity
+                ),
             ));
             return response()->json([
                 
-                'item' => Cart::getContent() , 
-                'total' => Cart::getTotal()
+                'item' => $item , 
+                'count' => Cart::getTotalQuantity(),
+                // 'total' => Cart::getTotal()
                 ]);
         }
 
@@ -128,4 +146,29 @@ class CartController extends Controller
       }
     }
   }
+
+  public function getItem($id)
+  {
+
+    if(Auth::check()) {
+        $userId = Auth::user()->id;
+       $item = Cart::session($userId)->get($id);
+     } else {
+        $item = Cart::get($id);
+     }
+     return  view('cart' , ['item' => $item]);
+  }
+
+  public function showCart($id)
+  {
+    if(Auth::check()) {
+      $userId = Auth::user()->id;
+      $item = Cart::session($userId)->get($id);
+    } else {
+      $item = Cart::get($id);
+    }
+      return view('website.cart' , ['item' => $item]);
+    // return $item->associatedModel;
+  }
+
 }

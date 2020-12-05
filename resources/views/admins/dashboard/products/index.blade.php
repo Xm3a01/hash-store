@@ -27,7 +27,7 @@
                                         <th>الخصم  </th> 
                                         <th>السعر</th>
                                         <th>الوصف</th>
-                                        {{-- <th>الكميه في الطلب</th> --}}
+                                        <th> المنتج متوفر</th>
                                         <th>التصنيف</th>
                                         <th>العمليات</th>
                                               
@@ -45,7 +45,7 @@
                                             <td>{{$product->disCount}}</td>
                                             <td>{{$product->price}} {{$product->unitPrice}}</td>
                                             <td>{{$product->description}}</td>
-                                            {{-- <td> سقف الطلبات {{$product->unitOnOrder}}</td> --}}
+                                            <td>  {{$product->productAvailable ? 'متوفر' : 'غير متوفر'}}</td>
                                             <td>{{$product->category->name}}</td>
                                             <td>
                                                 <form action="{{route('products.destroy' , $product->id)}}" method="POST">

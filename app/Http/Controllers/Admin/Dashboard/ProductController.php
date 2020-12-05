@@ -13,7 +13,7 @@ class ProductController extends Controller
    
     public function index()
     {
-        $products = Product::where('productAvailable' , 1)->get();
+        $products = Product::all();
         return view('admins.dashboard.products.index' , ['products' => $products]);
     }
 
