@@ -2,5 +2,4 @@
 
 @section('content')
 <vue-product />
-<div class="loader"></div>
 @endsection

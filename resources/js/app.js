@@ -12,6 +12,7 @@ Vue.component('vue-page', require('./Website/pages/Index').default);
 Vue.component('cart', require('./Website/pages/Cart/Cart').default);
 Vue.component('vue-category', require('./Website/pages/Category').default);
 Vue.component('vue-product', require('./Website/pages/Product').default);
+Vue.component('vue-contact', require('./Website/pages/Contact').default);
 
 const app = new Vue({
     el: '#app',

@@ -41,6 +41,7 @@ Route::get('authuser','Website\ProductController@authuser')->name('auth.user');
 Route::get('/' , 'Website\IndexController@index')->name('index');
 Route::get('categories','Website\ProductController@showCategoryPage')->name('show.categories');
 Route::get('products','Website\ProductController@showProductPage')->name('show.categories');
+Route::resource('contacts','Website\ContactController');
 
 // Cart
 Route::get('cart/{id}' , 'CartController@addItem')->name('cart');

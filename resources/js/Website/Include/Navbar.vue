@@ -11,7 +11,7 @@
 						
 						<li :class="target == 'Category' ? `active` : ''"><a href="/categories">Categories</a></li>
 						<li :class="target == 'Product' ? `active` : ''"><a href="/products">Prudects</a></li>
-						<li :class="target == 'Contact' ? `active` : ''"><a href="#">Contact us</a></li>
+						<li :class="target == 'Contact' ? `active` : ''"><a href="/contacts">Contact us</a></li>
 				
 					</ul>
 					<!-- /NAV -->

@@ -42,17 +42,18 @@
 						<div class="col-md-6">
 							<div class="header-search">
 								<form>
-									<select class="input-select" v-model="selectedcategory">
+									<!-- <select class="input-select" v-model="selectedcategory">
 										<option value=""> Categories</option>
 										<option v-for="category in categories" :key="category.id" :value="category.id">{{category.name}}</option>
-									</select>
+									</select> -->
+									<!-- <div class=""></div> -->
 									<input class="input" placeholder="Search here" v-model="search" >
 									<div style="background:#fff" v-if="searchProducts">
 										<span v-for="product in searchProducts" :key="product.id">
 											{{product.name + ' - ' + product.price}} 
 										</span>
 									</div>
-									<button class="search-btn">Search</button>
+									<!-- <button class="search-btn"></button> -->
 								</form>
 							</div>
 						</div>
@@ -66,17 +67,40 @@
 									
 								</div>
 								<!-- /Wishlist -->
-
 								<!-- Cart -->
 								<div class="dropdown">
-									<a href="#" @click.prevent="getItems" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" >
+									<a href="#" @click.prevent="getItems" data-toggle="dropdown" aria-expanded="true" >
 										<i class="fa fa-shopping-cart"></i>
 										<span> Cart</span>
 										<div class="qty">{{count ? count :cartIndc}}</div>
 									</a>
 
+
+									<div class="cart-dropdown" v-if="count > 0 || cartIndc > 0">
+										<div class="cart-list">
+											<div class="product-widget" v-for="item in items" :key="item.id">
+												<div class="product-img">
+													<img :src="item.attributes['image']" alt="">
+												</div>
+												<div class="product-body">
+													<h3 class="product-name"><a :href="`/show-cartItem/`+item.id">{{item.name}}</a></h3>
+													<h4 class="product-price"><span class="qty">{{item.quantity}}</span>{{item.price}}</h4>
+												</div>
+												<button class="delete"><i class="fa fa-close"></i></button>
+											</div>
+										</div>
+										<div class="cart-summary">
+											<small>total item : {{count ? count :cartIndc}}</small>
+											<h5>SUBTOTAL: {{total}}</h5>
+										</div>
+										<div class="cart-btns">
+											<a href="#">View Cart</a>
+											<a href="#">Checkout  </a>
+										</div>
+									</div>
+
 								<!-- Menu Toogle -->
-								  <div class="dropdown-menu" style="padding:10px">
+								  <!-- <div class="dropdown-menu" style="padding:10px">
 									<a v-for="item in items" :key="item.id" :href="`/show-cartItem/`+item.id">
 										<div>
 										 <i class="fa fa-bars"></i>
@@ -84,7 +108,7 @@
 										</div>
 										<span>{{item.price}}</span>
 									</a>
-								</div>
+								</div> -->
 								<!-- /Menu Toogle -->
 							</div>
 						</div>
@@ -107,12 +131,14 @@ export default {
 			selectedcategory: '',
 			search:'',
 			items: '',
-			user: []
+			user: [],
+			total : '',
         }
 	},
 
 	mounted() {
 		this.getUser();
+		// this.getItems();
 		// console.log(1)
 	},
 
@@ -121,7 +147,7 @@ export default {
         searchProducts() {
             if (this.search) {
                 return  this.products.filter((item) => {
-                    return (item.name.toLowerCase().match(this.search.toLowerCase()) && item.category_id == this.selectedcategory)
+                    return item.name.toLowerCase().match(this.search.toLowerCase())
 				});
 		 }
 	   },
@@ -139,6 +165,8 @@ export default {
       getItems() {
 		 axios.get('/get-cartItems').then((res)=>{
 			this.items =  res.data.item
+			this.total =  res.data.total
+			console.log(this.items)
 	     });
 	  },
 	  
@@ -162,5 +190,11 @@ export default {
 	  border-radius: 50%;
 	  border:2px solid #b62828;
 	  overflow: hidden;
+  }
+
+  .header-search .input {
+	  border-radius: 40px 40px 40px 40px;
+	  outline: hidden;
+	  outline-width: 0;
   }
 </style>
