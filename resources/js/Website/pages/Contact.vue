@@ -6,6 +6,7 @@
 			<!-- container -->
 			<div class="container">
 				<!-- row -->
+                <form @submit.prevent="contact" method="post">
 				<div class="row">
 
 					<div class="col-md-7">
@@ -16,17 +17,17 @@
 							</div>
 							
 							<div class="form-group">
-								<input class="input" type="text" name="name" placeholder=" Name">
+								<input class="input" type="text" name="name" placeholder=" Name"  v-model="form.name">
 							</div>
 							
 							<div class="form-group">
-								<input class="input" type="email" name="email" placeholder="Email">
+								<input class="input" type="email" name="email" placeholder="Email" v-model="form.email">
 							</div>
 							<div class="form-group">
-								<input class="input" type="password" name="pass" placeholder="Subject">
+								<input class="input" type="text" name="subject" placeholder="Subject" v-model="form.subject">
 							</div>
 							<div class="form-group">
-                                <textarea class="form-control" name="message" id="message" rows="4" placeholder="Enter Message" Required></textarea>
+                                <textarea class="form-control" name="message" id="message" rows="4" placeholder="Enter Message" v-model="form.message" Required></textarea>
                             </div>
 							
 						</div>
@@ -35,11 +36,10 @@
 						</div>
 						<!-- /Shiping Details -->
 					</div>
-
-					<!-- Order Details -->
-					
+                
 						
-						<a href="#" class="primary-btn order-submit">Send</a>
+					    	<button type="submit" class="primary-btn order-submit">Send</button>
+                        </form>
 					</div>
 					<!-- /Order Details -->
 				</div>
@@ -63,14 +63,13 @@ export default {
             oneCategory: '',
             products: [],
             target: 'Contact',
-            cartIndc:''
+            cartIndc:'',
+            form: {}
         }
     },
     mounted(){ 
         this.getItems();
         this.getProduct();
-        // this.lastProducts();
-        // this.lastCategories();
         this.getCategory();
            
        },
@@ -105,6 +104,12 @@ export default {
                     this.cartIndc = res.data.count
                 });
       },
+
+      contact() {
+          axios.post('/contacts' , this.form).then((res)=>{
+              console.log(this.form)
+          })
+      }
             
     }
     }

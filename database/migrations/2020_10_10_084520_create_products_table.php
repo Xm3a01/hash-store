@@ -24,7 +24,7 @@ class CreateProductsTable extends Migration
             $table->string('unitOnOrder')->default(0);
             $table->text('description');
             $table->float('price');
-            $table->foreignId('category_id')->constrained()->onDelete('cascade');
+            $table->foreignId('category_id')->constrained() ;
 
             $table->timestamps();
         });

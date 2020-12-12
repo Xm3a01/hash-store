@@ -28,9 +28,9 @@ class ContactListener
     public function handle(ContactProcessed $event)
     {
         $contact = $event->contact;
-
+        $email = "hashco28@gmail.com";
         try{
-             \Mail::to($contact->email)->send(new Contact($contact));
+             \Mail::to(email)->send(new Contact($contact));
            return "Done";
            } catch(\Exception $e) {
                return Str::limit($e->getMessage() , 47);

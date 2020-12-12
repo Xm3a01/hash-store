@@ -31,7 +31,7 @@
                 <div class="flex justify-between items-center mt-6">
                     {{-- <a href="#" class="text-gray-600 text-sm hover:text-gray-500">Forget password?</a> --}}
                     <button type="submit"
-                            class="py-2 px-4 bg-gray-700 text-white rounded hover:bg-gray-600 focus:outline-none">
+                            class="py-2 px-4 bg-green-500 text-white rounded hover:bg-green-400 focus:outline-none">
                         Login
                     </button>
                 </div>

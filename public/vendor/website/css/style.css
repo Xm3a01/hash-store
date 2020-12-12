@@ -603,9 +603,8 @@ textarea.input {
 .cart-dropdown .cart-btns>a:first-child {
   margin-right: -4px;
   background-color: #1e1f29;
-  border-radius: 20px;
-    width: 10px;
-    height: 5px;
+  
+    
 }
 
 .cart-dropdown .cart-btns>a:hover {

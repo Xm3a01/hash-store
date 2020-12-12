@@ -2880,14 +2880,13 @@ __webpack_require__.r(__webpack_exports__);
       oneCategory: '',
       products: [],
       target: 'Contact',
-      cartIndc: ''
+      cartIndc: '',
+      form: {}
     };
   },
   mounted: function mounted() {
     this.getItems();
-    this.getProduct(); // this.lastProducts();
-    // this.lastCategories();
-
+    this.getProduct();
     this.getCategory();
   },
   computed: {
@@ -2923,6 +2922,13 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/get-cartItems').then(function (res) {
         _this4.items = res.data.item;
         _this4.cartIndc = res.data.count;
+      });
+    },
+    contact: function contact() {
+      var _this5 = this;
+
+      axios.post('/contacts', this.form).then(function (res) {
+        console.log(_this5.form);
       });
     }
   }
@@ -6223,62 +6229,151 @@ var render = function() {
     [
       _c("div", { staticClass: "section" }, [
         _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-md-7" }, [
-              _c("div", { staticClass: "billing-details" }, [
-                _c("div", { staticClass: "section-title" }, [
-                  _c("h3", { staticClass: "title" }, [_vm._v("Contact Us")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c("input", {
-                    staticClass: "input",
-                    attrs: { type: "text", name: "name", placeholder: " Name" }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c("input", {
-                    staticClass: "input",
-                    attrs: {
-                      type: "email",
-                      name: "email",
-                      placeholder: "Email"
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c("input", {
-                    staticClass: "input",
-                    attrs: {
-                      type: "password",
-                      name: "pass",
-                      placeholder: "Subject"
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c("textarea", {
-                    staticClass: "form-control",
-                    attrs: {
-                      name: "message",
-                      id: "message",
-                      rows: "4",
-                      placeholder: "Enter Message",
-                      Required: ""
-                    }
-                  })
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
           _c(
-            "a",
-            { staticClass: "primary-btn order-submit", attrs: { href: "#" } },
-            [_vm._v("Send")]
+            "form",
+            {
+              attrs: { method: "post" },
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.contact($event)
+                }
+              }
+            },
+            [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-7" }, [
+                  _c("div", { staticClass: "billing-details" }, [
+                    _c("div", { staticClass: "section-title" }, [
+                      _c("h3", { staticClass: "title" }, [_vm._v("Contact Us")])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.name,
+                            expression: "form.name"
+                          }
+                        ],
+                        staticClass: "input",
+                        attrs: {
+                          type: "text",
+                          name: "name",
+                          placeholder: " Name"
+                        },
+                        domProps: { value: _vm.form.name },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "name", $event.target.value)
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.email,
+                            expression: "form.email"
+                          }
+                        ],
+                        staticClass: "input",
+                        attrs: {
+                          type: "email",
+                          name: "email",
+                          placeholder: "Email"
+                        },
+                        domProps: { value: _vm.form.email },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "email", $event.target.value)
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.subject,
+                            expression: "form.subject"
+                          }
+                        ],
+                        staticClass: "input",
+                        attrs: {
+                          type: "text",
+                          name: "subject",
+                          placeholder: "Subject"
+                        },
+                        domProps: { value: _vm.form.subject },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "subject", $event.target.value)
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("textarea", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.message,
+                            expression: "form.message"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          name: "message",
+                          id: "message",
+                          rows: "4",
+                          placeholder: "Enter Message",
+                          Required: ""
+                        },
+                        domProps: { value: _vm.form.message },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "message", $event.target.value)
+                          }
+                        }
+                      })
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "primary-btn order-submit",
+                  attrs: { type: "submit" }
+                },
+                [_vm._v("Send")]
+              )
+            ]
           )
         ])
       ])
@@ -20890,8 +20985,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\Projects\Hash.Co\hash-store\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! E:\Projects\Hash.Co\hash-store\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! F:\Projects\hash-store\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! F:\Projects\hash-store\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })
