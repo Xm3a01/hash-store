@@ -66,24 +66,23 @@
                          <div class="input-group m-b-1">
                             
                         
-                            <input type="number" class="form-control" placeholder="  الكمية " name="unitOnOrder" value="{{$product->unitOnOrder}}">
-                        </div>
-                         <div class="input-group m-b-1">
-                            
-                        
-                            <input type="text" class="form-control" placeholder="  الوصف " name="description" value="{{$product->description}}">
-                        </div>
-                         <div class="input-group m-b-1">
-                             <select name="category_id" id="" class="form-control">
-                                 @foreach ($categories as $category)                      
-                                   <option {{$product->category_id == $category->id ? 'selected' : ''}} value="{{$category->id}}">{{$category->name}}</option>
-                                 @endforeach
-                             </select>
+                            <input type="number" class="form-control" placeholder="  الكمية " name="productAmount" value="{{$product->productAmount}}">
                         </div>
                         <div class="input-group m-b-1">
-                            <label>   المنتج متوفر&ensp; &ensp; &ensp; </label>
-                            <input type="checkbox" name="productAvailable" value="1"  {{$product->productAvailable ? 'checked' : ''}} > &ensp; &ensp; &ensp;                    
+                            <select name="category_id" id="" class="form-control">
+                                @foreach ($categories as $category)                      
+                                <option {{$product->category_id == $category->id ? 'selected' : ''}} value="{{$category->id}}">{{$category->name}}</option>
+                                @endforeach
+                            </select>
                         </div>
+                        <div class="input-group m-b-1">
+                       
+                           <textarea type="text" class="form-control" placeholder="  الوصف " name="description"> {{$product->description}} </textarea>
+                       </div>
+                        {{-- <div class="input-group m-b-1">
+                            <label>     &ensp; &ensp; &ensp; </label>
+                            <input type="checkbox" name="productAvailable" value="1"  {{$product->productAvailable ? 'checked' : ''}} > &ensp; &ensp; &ensp;                    
+                        </div> --}}
                         <div>
                         <button  type="submit" class="btn btn-block btn-success">
                            

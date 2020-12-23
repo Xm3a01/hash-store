@@ -73,29 +73,6 @@ export default {
                 });
       },
             
-
-        //      cartAdd(id){
-        //         axios.get('cart/'+id).then((res)=>{
-        //             this.cartItem = res.data.item;
-        //             this.count = res.data.count;
-        //             this.total = res.data.total;
-        //         }).catch((err)=>{
-        //             console.log(err)
-        //         })
-        //    },
-           
-            // showCart() {
-            //     if(this.cartShow == false) {
-            //         this.cartShow = true;
-            //     } else {
-            //         this.cartShow = false;
-            //     }
-            // },
-            // clear() {
-            //     axios.get('/cart-delete-all').then((res)=>{
-            //         this.items = res.data.items
-            //     })
-            // },
             countChange(count) {
                 this.count = count[0] 
                 this.cartItem = count[1]
@@ -103,7 +80,8 @@ export default {
             lastProducts() {
                 axios.get('/last-products') .then(res =>{
                     this.lastproducts = res.data.products
-                    this.target = 'Home' 
+                    this.target = 'Home'
+                    // console.log(res.data.products)
                 }) .catch(err => {
                     console.log(err)
                 })

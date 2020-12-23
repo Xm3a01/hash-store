@@ -1,10 +1,10 @@
 @component('mail::message')
 # New message
 
-{{$contact->message}}
+{{$contact['message']}}
 
 @component('mail::panel')
-{{$contact->name}}
+{{$contact['name']}}
 @endcomponent
 Thanks,<br>
 {{ config('app.name') }}

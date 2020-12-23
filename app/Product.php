@@ -18,10 +18,10 @@ class Product extends Model implements HasMedia
         'category_id' , 
         'availableSize',
         'disCount',
-        'productAvailable',
         'unitPrice',
-        'unitOnOrder',
-        'color'
+        'color',
+        'productAmount',
+        'admin_id'
     ];
 
 

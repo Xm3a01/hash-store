@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 
 use Cart;
+use App\Order;
 use App\Product;
 use App\Traits\Mapping;
 use Illuminate\Http\Request;
+use App\Traits\ProductAmount;
 use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
-    use Mapping;
+    use Mapping , ProductAmount;
 
     public function cartItems()
     {
@@ -137,6 +139,7 @@ class CartController extends Controller
     if(Auth::check()) {
         $userId = Auth::user()->id;
       foreach (Cart::session($userId)->getContent() as $key => $cart) { //weltested letar
+        $this->amount($cart->id , $cart->quantity);
           Order::create([
             'name' =>$cart->name,
             'totalPrice' => $cart->price,

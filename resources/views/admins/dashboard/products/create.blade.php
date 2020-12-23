@@ -64,27 +64,26 @@
                                                     <div class="input-group m-b-1">
 
 
-                                                        <input type="number" class="form-control" name="unitOnOrder"
+                                                        <input type="number" class="form-control" name="productAmount"
                                                             placeholder="  الكمية ">
                                                     </div>
+
                                                     <div class="input-group m-b-1">
-
-
-                                                        <input type="text" class="form-control" placeholder="  الوصف " name="description">
-                                                    </div>
-                                                    <div class="input-group m-b-1">
-
-
+                                                        
+                                                        
                                                         <input type="hidden" class="form-control" name="unitPrice" value="SDG"
-                                                            placeholder="  ملاحظات ">
+                                                        placeholder="  ملاحظات ">
                                                     </div>
                                                     <div class="input-group m-b-1">
                                                         <select name="category_id" id="" class="form-control">
                                                             <option value="">تصنيف المنتج</option>
                                                             @foreach ($categories as $category)
-                                                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                                            <option value="{{$category->id}}">{{$category->name}}</option>
                                                             @endforeach
                                                         </select>
+                                                    </div>
+                                                    <div class="input-group m-b-1">
+                                                        <textarea type="text" class="form-control" placeholder="  الوصف " name="description"> </textarea>
                                                     </div>
                                                     <div>
                                                         <button type="submit" class="btn btn-block btn-success">

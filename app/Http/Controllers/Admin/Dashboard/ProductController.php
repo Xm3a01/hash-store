@@ -27,6 +27,9 @@ class ProductController extends Controller
    
     public function store(Request $request)
     {
+        $data = $request->all();
+        $data['admin_id'] = \Auth::user()->id;
+
         $this->validate($request , [
             'name',
             'description',
@@ -39,7 +42,7 @@ class ProductController extends Controller
             'unitOnOrder',
         ]);
 
-        $product = Product::create($request->all());
+        $product = Product::create($data);
             
         if($request->hasFile('image')) {
             $product->addMedia($request->image)->preservingOriginal()->toMediaCollection('products');

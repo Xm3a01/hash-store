@@ -2928,7 +2928,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this5 = this;
 
       axios.post('/contacts', this.form).then(function (res) {
-        console.log(_this5.form);
+        _this5.form = '';
       });
     }
   }
@@ -3022,6 +3022,8 @@ __webpack_require__.r(__webpack_exports__);
       //   }
 
     };
+  },
+  mounted: function mounted() {// console.log(this.products)
   },
   methods: {
     cartAdd: function cartAdd(id) {
@@ -3129,27 +3131,6 @@ __webpack_require__.r(__webpack_exports__);
         _this4.cartIndc = res.data.count;
       });
     },
-    //      cartAdd(id){
-    //         axios.get('cart/'+id).then((res)=>{
-    //             this.cartItem = res.data.item;
-    //             this.count = res.data.count;
-    //             this.total = res.data.total;
-    //         }).catch((err)=>{
-    //             console.log(err)
-    //         })
-    //    },
-    // showCart() {
-    //     if(this.cartShow == false) {
-    //         this.cartShow = true;
-    //     } else {
-    //         this.cartShow = false;
-    //     }
-    // },
-    // clear() {
-    //     axios.get('/cart-delete-all').then((res)=>{
-    //         this.items = res.data.items
-    //     })
-    // },
     countChange: function countChange(count) {
       this.count = count[0];
       this.cartItem = count[1];
@@ -3159,7 +3140,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/last-products').then(function (res) {
         _this5.lastproducts = res.data.products;
-        _this5.target = 'Home';
+        _this5.target = 'Home'; // console.log(res.data.products)
       })["catch"](function (err) {
         console.log(err);
       });
@@ -5419,7 +5400,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "cart-btns" }, [
-      _c("a", { attrs: { href: "#" } }, [_vm._v("View Cart")]),
+      _c("a", { attrs: { href: "#" } }, [_vm._v("Delete All")]),
       _vm._v(" "),
       _c("a", { attrs: { href: "#" } }, [_vm._v("Checkout  ")])
     ])
@@ -6411,74 +6392,70 @@ var render = function() {
         { staticClass: "row" },
         _vm._l(_vm.products, function(product) {
           return _c("div", { key: product.id, staticClass: "col-md-3" }, [
-            product.productAvailable
-              ? _c("div", { staticClass: "product" }, [
-                  _c("div", { staticClass: "product-img" }, [
-                    _c("img", { attrs: { src: product.image, alt: "" } }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "product-label" }, [
-                      _c("span", { staticClass: "sale" }, [
-                        _vm._v(
-                          _vm._s(
-                            product.disCount == 0
-                              ? ""
-                              : "%" +
-                                  Math.floor(
-                                    (product.disCount / product.price) * 100
-                                  )
-                          )
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "new" }, [_vm._v("NEW")])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "product-body" }, [
-                    _c("p", { staticClass: "product-category" }, [
-                      _vm._v(_vm._s(product.name))
-                    ]),
-                    _vm._v(" "),
-                    _c("h3", { staticClass: "product-name" }, [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _vm._v(_vm._s(product.description))
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("h4", { staticClass: "product-price" }, [
-                      _vm._v(_vm._s(product.price - product.disCount)),
-                      _c("del", { staticClass: "product-old-price" }, [
-                        _vm._v(
-                          _vm._s(product.disCount == 0 ? 0 : product.price)
-                        )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _vm._m(1, true),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "product-btns" })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "add-to-cart" }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "add-to-cart-btn",
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            return _vm.cartAdd(product.id)
-                          }
-                        }
-                      },
-                      [
-                        _c("i", { staticClass: "fa fa-shopping-cart" }),
-                        _vm._v(" add to cart")
-                      ]
+            _c("div", { staticClass: "product" }, [
+              _c("div", { staticClass: "product-img" }, [
+                _c("img", { attrs: { src: product.image, alt: "" } }),
+                _vm._v(" "),
+                _c("div", { staticClass: "product-label" }, [
+                  _c("span", { staticClass: "sale" }, [
+                    _vm._v(
+                      _vm._s(
+                        product.disCount == 0
+                          ? ""
+                          : "%" +
+                              Math.floor(
+                                (product.disCount / product.price) * 100
+                              )
+                      )
                     )
-                  ])
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "new" }, [_vm._v("NEW")])
                 ])
-              : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "product-body" }, [
+                _c("p", { staticClass: "product-category" }, [
+                  _vm._v(_vm._s(product.name))
+                ]),
+                _vm._v(" "),
+                _c("h3", { staticClass: "product-name" }, [
+                  _c("a", { attrs: { href: "#" } }, [
+                    _vm._v(_vm._s(product.description))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("h4", { staticClass: "product-price" }, [
+                  _vm._v(_vm._s(product.price - product.disCount)),
+                  _c("del", { staticClass: "product-old-price" }, [
+                    _vm._v(_vm._s(product.disCount == 0 ? 0 : product.price))
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm._m(1, true),
+                _vm._v(" "),
+                _c("div", { staticClass: "product-btns" })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "add-to-cart" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "add-to-cart-btn",
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.cartAdd(product.id)
+                      }
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "fa fa-shopping-cart" }),
+                    _vm._v(" add to cart")
+                  ]
+                )
+              ])
+            ])
           ])
         }),
         0

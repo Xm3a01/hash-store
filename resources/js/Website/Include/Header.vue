@@ -94,7 +94,7 @@
 											<h5>SUBTOTAL: {{total}}</h5>
 										</div>
 										<div class="cart-btns">
-											<a href="#">View Cart</a>
+											<a href="#">Delete All</a>
 											<a href="#">Checkout  </a>
 										</div>
 									</div>

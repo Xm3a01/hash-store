@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Website;
 
 use App\Mail\Contact;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -25,7 +26,12 @@ class ContactController extends Controller
      */
     public function create()
     {
-        
+        $request = [
+            'name' => 'name',
+            'subject' => 'subject',
+            'message' => 'subject',
+        ];
+       
     }
 
     /**
@@ -36,7 +42,13 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        event( new Contact($request));
+        $email = "hashco28@gmail.com";
+        try{
+             \Mail::to($email)->send(new Contact($request));
+           return "Done";
+           } catch(\Exception $e) {
+               return $e->getMessage();
+         }
     }
 
     /**

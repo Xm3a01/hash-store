@@ -16,14 +16,14 @@ class ProductController extends Controller
     use Canvert;
     public function index()
     {
-        $products = Product::with('category')->latest('created_at')->get();
+        $products = Product::where('productAmount', '>', 0)->with('category')->latest('created_at')->get();
         $this->convert_to_map($products);
         return response()->json(['products' => $products]); 
     }
 
     public function lastProduct()
     {
-        $products = Product::latest('created_at')->limit(8)->get();
+        $products = Product::where('productAmount', '>', 0)->latest('created_at')->limit(8)->get();
         $this->convert_to_map($products);
         return response()->json(['products' => $products]);
     }

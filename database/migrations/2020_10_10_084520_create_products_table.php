@@ -18,13 +18,14 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('availableSize');
             $table->float('disCount')->default(0);
-            $table->boolean('productAvailable')->default(1);
+            $table->integer('productAmount')->default(1);
             $table->string('unitPrice');
             $table->string('color');
             $table->string('unitOnOrder')->default(0);
             $table->text('description');
             $table->float('price');
             $table->foreignId('category_id')->constrained() ;
+            $table->foreignId('admin_id')->constrained();
 
             $table->timestamps();
         });

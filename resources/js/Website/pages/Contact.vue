@@ -35,7 +35,7 @@
 							
 						</div>
 						<!-- /Shiping Details -->
-					</div>
+				    	</div>
                 
 						
 					    	<button type="submit" class="primary-btn order-submit">Send</button>
@@ -107,7 +107,7 @@ export default {
 
       contact() {
           axios.post('/contacts' , this.form).then((res)=>{
-              console.log(this.form)
+              this.form = ''
           })
       }
             

@@ -14,7 +14,7 @@
                 <!-- /section title -->
               <div class="row">
                   <div class="col-md-3" v-for="product in products" :key="product.id">
-                    <div class="product" v-if="product.productAvailable">
+                    <div class="product">
                         <div class="product-img">
                             <img :src="product.image" alt="">
                             <div class="product-label">
@@ -78,6 +78,9 @@ export default {
             //     "cssEase": "linear"
             //   }
         }
+    },
+    mounted(){
+        // console.log(this.products)
     },
     methods:{
         cartAdd(id){

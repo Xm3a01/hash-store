@@ -51,6 +51,7 @@ Route::get('cart-delete-all' , 'CartController@deleteAll')->name('cart.delete.al
 Route::get('get-cartItems' , 'CartController@cartItems')->name('cart.items');
 Route::get('get-cartItem/{id}' , 'CartController@getItem')->name('cart.item');
 Route::get('show-cartItem/{id}' , 'CartController@showCart')->name('show.cartItem');
+Route::get('save-order' , 'CartController@saveOrder')->name('save.order');
 
 //
 Route::get('test','CartController@saveOrder');

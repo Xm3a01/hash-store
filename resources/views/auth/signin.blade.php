@@ -34,7 +34,8 @@
         <!-- row -->
     <div class="row">
 
-        <div class="col-md-7">
+        <div class="col-md-5"></div>
+        <div class="col-md-7" style="direction: rtl">
             <!-- Billing Details -->
             <div class="billing-details">
                 <div class="section-title">
@@ -64,10 +65,10 @@
             </div>
             
                 
+            <button type="submit" class="primary-btn order-submit">Login</button>
             </div>
         </div>
             
-            <button type="submit" class="primary-btn order-submit">Login</button>
      </div>
     </form>
     </div>
