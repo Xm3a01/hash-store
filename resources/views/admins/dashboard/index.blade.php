@@ -9,12 +9,13 @@
         <div class="col-sm-6 col-lg-3">
             <div class="card card-inverse card-success">
                 <div class="card-block p-b-0">
-                    <div class="btn-group pull-left">
-                        
-                       <i class="icon-paypal"></i>
+                    <div class="btn-group pull-left" >
+                        <h2>
+                            ({{$totalPayment}})
+                        </h2>
                     </div>
                     
-                    <p>المنتجات</p>
+                    <p>كمية المشتريات</p>
                 </div>
                 <div class="chart-wrapper" style="height:70px;">
                     <canvas id="card-chart3" class="chart" height="70"></canvas>

@@ -21,7 +21,8 @@ class Product extends Model implements HasMedia
         'unitPrice',
         'color',
         'productAmount',
-        'admin_id'
+        'admin_id',
+        'fiexdAmount'
     ];
 
 

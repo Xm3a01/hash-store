@@ -24,6 +24,7 @@ class CreateProductsTable extends Migration
             $table->string('unitOnOrder')->default(0);
             $table->text('description');
             $table->float('price');
+            $table->float('fiexdAmount');
             $table->foreignId('category_id')->constrained() ;
             $table->foreignId('admin_id')->constrained();
 

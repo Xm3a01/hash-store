@@ -40,7 +40,7 @@
                                                 <td>{{$order->totalPrice / $order->quantity}}</td>
                                                 <td>{{$order->created_at}}</td>
                                                 <td>{{$order->totalPrice}}</td>
-                                                <td>{{$order->user->name}}</td>
+                                                <td>{{$order->user->name ?? "Unkonw"}}</td>
                                                 <td>
                                                     <form action="{{route('orders.destroy' , $order->id)}}" method="post">
                                                         @csrf

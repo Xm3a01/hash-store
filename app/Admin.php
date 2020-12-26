@@ -45,4 +45,9 @@ class Admin  extends Authenticatable implements HasMedia
     {
         return $this->getFirstMediaUrl('avatars');
     }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

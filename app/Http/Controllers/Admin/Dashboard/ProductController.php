@@ -50,6 +50,7 @@ class ProductController extends Controller
             'disCount' => 'required',
             'productAmount' => 'required',
         ]);
+        $data['fiexdAmount']  = $data['productAmount'];
 
          $product = Product::create($data);
             

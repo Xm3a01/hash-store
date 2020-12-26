@@ -147,6 +147,15 @@ class CartController extends Controller
             'user_id' => $userId
          ]);
       }
+    } else {
+      foreach (Cart::getContent() as $key => $cart) { //weltested letar
+        $this->amount($cart->id , $cart->quantity);
+          Order::create([
+            'name' =>$cart->name,
+            'totalPrice' => $cart->price,
+            'quantity' => $cart->quantity,
+         ]);
+      }
     }
   }
 
