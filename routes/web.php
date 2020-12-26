@@ -18,12 +18,16 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group(['prefix' => '/dashboard' , 'middleware' => 'auth:admin'] , function(){
+
     Route::get('/' , 'Admin\IndexController@index')->name('admins.dashboard');
-    Route::resource('categories','Admin\Dashboard\CategoryController');
-    Route::resource('orders','Admin\Dashboard\OrderController');
-    Route::resource('users','Admin\Dashboard\UserController');
     Route::resource('products', 'Admin\Dashboard\ProductController');
-    Route::resource('admins', 'Admin\Dashboard\AdminController');
+
+     Route::group(['middleware' => 'is_admin'] , function(){
+      Route::resource('categories','Admin\Dashboard\CategoryController');
+      Route::resource('orders','Admin\Dashboard\OrderController');
+      Route::resource('users','Admin\Dashboard\UserController');
+      Route::resource('admins', 'Admin\Dashboard\AdminController');
+    });
   });
 
 
@@ -58,8 +62,6 @@ Route::get('test','CartController@saveOrder');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::view('/ui', 'ui.index');
 
 Route::get('sinOut', function () {
   Auth::guard('web')->logout();

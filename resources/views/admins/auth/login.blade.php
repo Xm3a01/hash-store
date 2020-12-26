@@ -1,13 +1,12 @@
 
-@extends('layouts.auth')
+@extends('admins.layouts.app')
 
 @section('content')
 <div class="min-h-screen flex items-center">
     <div class="bg-white w-full max-w-lg rounded-lg shadow overflow-hidden mx-auto">
         <div class="py-4 px-6">
             <div class="text-center font-bold text-gray-700 text-3xl">Hash</div>
-            <div class="mt-1 text-center font-bold text-gray-600 text-xl">Admin</div>
-            <div class="mt-1 text-center text-gray-600">Login or Register</div>
+            <div class="mt-1 text-center font-bold text-gray-600 text-xl">Admin Login</div>
             <form action="{{ route('admins.login') }}" method="POST">
                 @csrf
                 <div class="mt-4 w-full">
@@ -31,7 +30,7 @@
                 <div class="flex justify-between items-center mt-6">
                     {{-- <a href="#" class="text-gray-600 text-sm hover:text-gray-500">Forget password?</a> --}}
                     <button type="submit"
-                            class="py-2 px-4 bg-green-500 text-white rounded hover:bg-green-400 focus:outline-none">
+                            class="py-2 px-4 bg-blue-500 text-white rounded hover:bg-green-400 focus:outline-none">
                         Login
                     </button>
                 </div>

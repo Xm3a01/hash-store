@@ -17,7 +17,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $admins = Admin::where('id' , '!=', 1)->get();
+        $admins = Admin::where('is_supervisor' , 1)->get();
         return view('admins.dashboard.admins.index' , ['admins' => $admins]);
     }
 
@@ -46,6 +46,7 @@ class AdminController extends Controller
         ]);
 
         $data['password']  = Hash::make($request->password);
+        $data['is_supervisor']  = 1;
 
         $admin = Admin::create($data);
 

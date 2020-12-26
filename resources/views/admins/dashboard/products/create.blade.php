@@ -82,6 +82,17 @@
                                                             @endforeach
                                                         </select>
                                                     </div>
+                                                    @if (!Auth::guard('admin')->user()->is_supervisor)
+                                                    <div class="input-group m-b-1">
+                                                        <select name="admin_id" id="" class="form-control">
+                                                            <option value="">صاحب المنتج</option>
+                                                            <option value="{{Auth::guard('admin')->user()->id}}">تابع للشركه</option>
+                                                            @foreach ($admins as $admin)
+                                                             <option value="{{$admin->id}}">{{$admin->name}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    @endif
                                                     <div class="input-group m-b-1">
                                                         <textarea type="text" class="form-control" placeholder="  الوصف " name="description"> </textarea>
                                                     </div>

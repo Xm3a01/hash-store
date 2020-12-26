@@ -4,6 +4,26 @@
 <aside>
     <div class="container-fluid">
 
+        @if (Auth::guard('admin')->user()->is_supervisor)
+
+        <div class="col-sm-6 col-lg-3">
+            <div class="card card-inverse card-success">
+                <div class="card-block p-b-0">
+                    <div class="btn-group pull-left">
+                        
+                       <i class="icon-paypal"></i>
+                    </div>
+                    
+                    <p>المنتجات</p>
+                </div>
+                <div class="chart-wrapper" style="height:70px;">
+                    <canvas id="card-chart3" class="chart" height="70"></canvas>
+                </div>
+            </div>
+        </div>
+
+        @else
+
         <div class="animated fadeIn">
             <div class="row">
                 <div class="col-sm-6 col-lg-3">
@@ -19,7 +39,7 @@
                             <p>التصنيفات</p>
                         </div>
                         <div class="chart-wrapper p-x-1" style="height:70px;">
-                            <canvas id="card-chart1" class="chart" height="70"></canvas>
+                            <canvas id="card-chart1" class="chart" height="10"></canvas>
                         </div>
                     </div>
                 </div>
@@ -74,6 +94,7 @@
                     </div>
                 </div>
                 <!--/col-->
+              @endif
 
             </div>
             <!--/row-->

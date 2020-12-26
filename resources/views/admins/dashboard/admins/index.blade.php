@@ -11,7 +11,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <a class="nav-link btn btn-primary" href="{{route('users.create')}}"> + اضافة </a>
+                                <a class="nav-link btn btn-primary" href="{{route('admins.create')}}"> + اضافة </a>
 
                                  <i class="fa fa-align-justify"></i>    كل المشرفين  
                             </div>
@@ -33,10 +33,10 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($admins as $admin)
+                                        @foreach ($admins as $index => $admin)
                                             
                                         <tr>
-                                            <td>{{$admin->id}}</td>
+                                            <td>{{$index + 1}}</td>
                                             <td>{{$admin->name}}</td>
                                             <td>{{$admin->email}}</td>
                                             <td>{{$admin->phone}}</td>

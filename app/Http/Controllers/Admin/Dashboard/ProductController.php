@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin\Dashboard;
 
+use App\Admin;
 use App\Product;
 use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ProductRequest;
 
 class ProductController extends Controller
@@ -13,7 +15,12 @@ class ProductController extends Controller
    
     public function index()
     {
-        $products = Product::all();
+          
+        if(Auth::guard('admin')->user()->is_supervisor)
+          $products =  Product::where('admin_id' , Auth::guard('admin')->user()->id)->get();
+        else 
+          $products = Product::all();
+
         return view('admins.dashboard.products.index' , ['products' => $products]);
     }
 
@@ -21,28 +28,30 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('admins.dashboard.products.create' , ['categories' => $categories]);
+        $admins = Admin::where('is_supervisor' , 1)->get();
+        return view('admins.dashboard.products.create' , [
+            'categories' => $categories,
+            'admins' => $admins
+            ]);
     }
 
    
     public function store(Request $request)
     {
         $data = $request->all();
-        $data['admin_id'] = \Auth::user()->id;
+        // $data['admin_id'] = Auth::guard('admin')->user()->id;
 
         $this->validate($request , [
-            'name',
-            'description',
-            'price',
-            'category_id',
-            'availableSize',
-            'disCount',
-            'productAvailable',
-            'unitPrice',
-            'unitOnOrder',
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'category_id' => 'required',
+            'availableSize' => 'required',
+            'disCount' => 'required',
+            'productAmount' => 'required',
         ]);
 
-        $product = Product::create($data);
+         $product = Product::create($data);
             
         if($request->hasFile('image')) {
             $product->addMedia($request->image)->preservingOriginal()->toMediaCollection('products');
@@ -60,9 +69,12 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $categories = Category::all();
+        $admins = Admin::where('is_supervisor' , 1)->get();
+
         return view('admins.dashboard.products.edit' , [
             'product' => $product,
-            'categories' =>  $categories
+            'categories' =>  $categories,
+            'admins' => $admins
             ]);
     }
 
@@ -71,18 +83,13 @@ class ProductController extends Controller
     {
         $data = $request->all();
 
-        if($request->productAvailable == 1)
-          $data['productAvailable'] =  1;
-        else 
-          $data['productAvailable'] = 0;
-
         $product->update($data);
         if ($request->hasFile('image')) {
             $product->clearMediaCollection('products');
             $product->addMedia($request->image)->preservingOriginal()->toMediaCollection('products');
         }
 
-        \Session::flash('success' , 'تم حفظ المنتج بنجاح');
+        \Session::flash('success' , 'تم تعديل المنتج بنجاح');
         return redirect()->route('products.index');
     }
 

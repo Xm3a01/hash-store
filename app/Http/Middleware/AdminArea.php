@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class Supervisor
+class AdminArea
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class Supervisor
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::guard('admin')->check() && Auth::guard('admin')->user()->is_supervisor) {
+        if(Auth::guard('admin')->check() && !Auth::guard('admin')->user()->is_supervisor) {
             return $next($request);
         } 
         abort(403);
