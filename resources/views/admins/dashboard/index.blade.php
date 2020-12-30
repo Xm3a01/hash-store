@@ -10,9 +10,9 @@
             <div class="card card-inverse card-success">
                 <div class="card-block p-b-0">
                     <div class="btn-group pull-left" >
-                        <h2>
-                            ({{$totalPayment}})
-                        </h2>
+                        <h4 class="totalPayment">
+                            {{Auth::guard('admin')->user()->totalPayment}}
+                        </h4>
                     </div>
                     
                     <p>كمية المشتريات</p>

@@ -125,7 +125,7 @@
 </template>
 <script>
 export default {
-    props:['count' , 'categories' , 'products' , 'cartIndc' ],
+    props:['count' ,'cartIndc' ],
     data() {
         return {
 			selectedcategory: '',
@@ -133,11 +133,13 @@ export default {
 			items: '',
 			user: [],
 			total : '',
+			products: []
         }
 	},
 
 	mounted() {
 		this.getUser();
+		this.getProduct();
 		// this.getItems();
 		// console.log(1)
 	},
@@ -162,6 +164,13 @@ export default {
 	// 		  console.log(res.data)
 	// 	  });
 	//   },
+
+	 getProduct() {
+		axios.get('/website-products').then(res =>{
+			this.products = res.data.products
+			// console.log(res.data)
+	    	})
+    	},
       getItems() {
 		 axios.get('/get-cartItems').then((res)=>{
 			this.items =  res.data.item

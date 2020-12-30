@@ -4,7 +4,7 @@
 {{$contact['message']}}
 
 @component('mail::panel')
-{{$contact['name']}}
+{{$contact['email']}}
 @endcomponent
 Thanks,<br>
 {{ config('app.name') }}

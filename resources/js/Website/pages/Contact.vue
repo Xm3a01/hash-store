@@ -1,10 +1,14 @@
 
 <template>
-    <app-layout :count ="count" :products ="products" :categories="categories" :cartIndc ="cartIndc" :target = "target">
-
+    <app-layout :count ="count" :cartIndc ="cartIndc" :target = "target">
+       
        	<div class="section">
 			<!-- container -->
 			<div class="container">
+            <div v-if="status.success || status.error" class="alert alert-dismissible" role="alert" :class="status.success ? 'alert-success' : 'alert-danger' ">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>{{status.success ? 'Successfull' :  'Warning!'}}</strong>{{status.success ? status.success : status.error}}
+            </div>
 				<!-- row -->
                 <form @submit.prevent="contact" method="post">
 				<div class="row">
@@ -55,59 +59,44 @@ export default {
 	},
     data() {
         return {
-            categories:[],
-            lastproducts:[],
             count:0,
-            lastcategories:[],
             search: '',
-            oneCategory: '',
-            products: [],
             target: 'Contact',
             cartIndc:'',
-            form: {}
+            form: {},
+            status: {}
         }
     },
     mounted(){ 
-        this.getItems();
-        this.getProduct();
-        this.getCategory();
+         this.getItems();    
+       },
+    //    computed :{
+    //        searchProducts() {
+    //         if (this.search) {
+    //             return this.categories.products.filter(item => {
+    //                 return (item.name.toLowerCase().match(this.search.toLowerCase()) && item.category_id == this.search)
+    //             });
+    //         // } else {
+    //         //     return this.items
+    //         }
+    //     }
+    //    },
+       methods:{
            
-       },
-       computed :{
-           searchProducts() {
-            if (this.search) {
-                return this.categories.products.filter(item => {
-                    return (item.name.toLowerCase().match(this.search.toLowerCase()) && item.category_id == this.search)
-                });
-            // } else {
-            //     return this.items
-            }
-        }
-       },
-        methods:{
-            getProduct() {
-                axios.get('/website-products').then(res =>{
-                    this.products = res.data.products
-                    // console.log(res.data)
-                })
-            },
-            getCategory() {
-                axios.get('/website-categories').then(res =>{
-                    this.categories = res.data.categories
-                    // console.log(res.data.categories)
-                })
-            },
-
-            getItems() {
-                axios.get('/get-cartItems').then((res)=>{
-                    this.items =  res.data.item
-                    this.cartIndc = res.data.count
-                });
+        getItems() {
+            axios.get('/get-cartItems').then((res)=>{
+                this.items =  res.data.item
+                this.cartIndc = res.data.count
+            });
       },
 
       contact() {
+          
+          console.log(this.form.email)
           axios.post('/contacts' , this.form).then((res)=>{
-              this.form = ''
+              this.status = res.data;
+              this.form = {};
+            //   console.log(res.data)
           })
       }
             

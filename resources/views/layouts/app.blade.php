@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Electro - Ecommerce </title>
+    <title>HashZo </title>
 
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -38,8 +38,11 @@
     <script src="{{asset('vendor/website/js/bootstrap.min.js')}}"></script>
     {{-- <script src="{{asset('vendor/website/js/slick.min.js')}}"></script>
     <script src="{{asset('vendor/website/js/nouislider.min.js')}}"></script> --}}
-    <script src="{{asset('vendor/website/js/jquery.zoom.min.js')}}"></script>
+    {{-- <script src="{{asset('vendor/website/js/jquery.zoom.min.js')}}"></script> --}}
     <script src="{{asset('vendor/website/js/main.js')}}"></script>
     <script src="{{ mix('js/app.js') }}" defer></script>
+    <script>
+        $('.alert').alert()
+    </script>
 </body>
 </html>

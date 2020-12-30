@@ -1,5 +1,5 @@
 <template>
-    <app-layout :count ="count" :products ="products" :categories="categories" :cartIndc ="cartIndc" :target="target">
+    <app-layout :count ="count"  :cartIndc ="cartIndc" :target="target">
 
         <!-- Category section -->
         <Category :products = "lastcategories"/>
@@ -35,23 +35,22 @@ export default {
     },
     mounted(){ 
         this.getItems();
-        this.getProduct();
+        // this.getProduct();
         this.lastProducts();
         this.lastCategories();
-        this.getCategory();
            
        },
-       computed :{
-           searchProducts() {
-            if (this.search) {
-                return this.categories.products.filter(item => {
-                    return (item.name.toLowerCase().match(this.search.toLowerCase()) && item.category_id == this.search)
-                });
-            // } else {
-            //     return this.items
-            }
-        }
-       },
+    //    computed :{
+    //        searchProducts() {
+    //         if (this.search) {
+    //             return this.categories.products.filter(item => {
+    //                 return (item.name.toLowerCase().match(this.search.toLowerCase()) && item.category_id == this.search)
+    //             });
+    //         // } else {
+    //         //     return this.items
+    //         }
+    //     }
+    //    },
         methods:{
             getProduct() {
                 axios.get('/website-products').then(res =>{

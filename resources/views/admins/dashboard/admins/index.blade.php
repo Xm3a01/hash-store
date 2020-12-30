@@ -19,12 +19,12 @@
                                 <table class="table table-bordered table-striped table-condensed">
                                     <thead>
                                         <tr>
+                                        <th> الصوره </th>
                                         <th>رقم المشرف </th> 
                                         <th>اسم المشرف </th>
                                         <th>عنوان البريد </th>
                                         <th>رقم الهاتف </th> 
                                         <th> كميه المبيعات </th> 
-                                        <th> الصوره </th>
                                         
                                         
                                         <th>العمليات</th>
@@ -35,19 +35,13 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($admins as $index => $admin)
-                                            @php
-                                               $products  = App\Product::where('admin_id' , $admin->id)->get();
-                                               $productAmount = $products->sum('productAmount');
-                                               $fixedAmount = $products->sum('fiexdAmount');
-
-                                            @endphp
                                         <tr>
+                                            <td><img src="{{$admin->avatar}}" height="40" width="40" style="border-radius: 50%" alt=""></td>
                                             <td>{{$index + 1}}</td>
                                             <td>{{$admin->name}}</td>
                                             <td>{{$admin->email}}</td>
                                             <td>{{$admin->phone}}</td>
-                                            <td>{{$fixedAmount - $productAmount}}</td>
-                                            <td><img src="{{$admin->avatar}}" height="40" width="40" style="border-radius: 50%" alt=""></td>
+                                            <td>{{$admin->totalPayment}}</td>
                                             <td>
                                                 <form action="{{route('admins.destroy' , $admin->id)}}" method="post">
                                                     @csrf
@@ -62,8 +56,8 @@
 
                     
 
-                </div>
-                <!--/row-->
+                                 </div>
+                               <!--/row-->
 
                 
                                 <!--/.row-->

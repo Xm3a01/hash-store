@@ -24,7 +24,7 @@
                     <strong>الحساب</strong>
                 </div>
                 
-                <a class="dropdown-item" href="{{route('admins.edit' , Auth::user()->id)}}"><i class="icon-settings"></i> إعدادات الحساب</a>
+                <a class="dropdown-item" href="{{route('super.admin' , Auth::user()->id)}}"><i class="icon-settings"></i> إعدادات الحساب</a>
                 <a class="dropdown-item" href="{{route('admins.logout')}}"><i class="fa fa-lock"></i> خروج</a>
             </div>
         </li>

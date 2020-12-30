@@ -147,6 +147,7 @@ class CartController extends Controller
             'user_id' => $userId
          ]);
       }
+      Cart::session($userId)->clear();
     } else {
       foreach (Cart::getContent() as $key => $cart) { //weltested letar
         $this->amount($cart->id , $cart->quantity);
@@ -156,7 +157,9 @@ class CartController extends Controller
             'quantity' => $cart->quantity,
          ]);
       }
+      Cart::clear();
     }
+     
   }
 
   public function getItem($id)

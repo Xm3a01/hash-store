@@ -20,7 +20,7 @@ class Admin  extends Authenticatable implements HasMedia
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','is_supervisor'
+        'name', 'email', 'password','is_supervisor','phone'
     ];
 
     /**
@@ -44,6 +44,21 @@ class Admin  extends Authenticatable implements HasMedia
     public function getAvatarAttribute()
     {
         return $this->getFirstMediaUrl('avatars');
+    }
+
+    public function getProductAmountAttribute()
+    {
+        return $this->products->sum('productAmount');
+    }
+
+    public function getFixedAmountAttribute()
+    {
+        return $this->products->sum('fiexdAmount');
+    }
+
+    public function getTotalPaymentAttribute()
+    {
+        return $this->fixedAmount - $this->ProductAmount;
     }
 
     public function products()

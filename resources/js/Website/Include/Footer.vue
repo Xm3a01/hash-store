@@ -47,10 +47,10 @@
 						<div class="col-md-3 col-xs-6">
 							<div class="footer">
 								<h3 class="footer-title">About Us</h3>
-								--><ul class="footer-links">
-									<li><a href="#"><i class="fa fa-map-marker"></i></a></li>
-									<li><a href="#"><i class="fa fa-phone"></i></a></li>
-									<li><a href="#"><i class="fa fa-envelope-o"></i></a></li>
+								<ul class="footer-links">
+									<li><a href="#"><i class="fa fa-map-marker"></i></a>  Al Siteen St, Khartoum, Sudan </li>
+									<li><a href="#"><i class="fa fa-phone"></i></a> </li>
+									<li><a href="#"><i class="fa fa-envelope-o"></i></a>email@email.com</li>
 								</ul>
 							</div>
 						</div>

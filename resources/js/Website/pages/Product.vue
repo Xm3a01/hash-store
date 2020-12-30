@@ -1,5 +1,5 @@
 <template>
-    <app-layout :count ="count" :products ="products" :categories="categories" :cartIndc ="cartIndc" :target = "target">
+    <app-layout :count ="count" :cartIndc ="cartIndc" :target = "target">
 
       <div class="section">
 			<!-- container -->
@@ -192,38 +192,6 @@ export default {
 
                 console.log(this.products);
            }
-           
-            // showCart() {
-            //     if(this.cartShow == false) {
-            //         this.cartShow = true;
-            //     } else {
-            //         this.cartShow = false;
-            //     }
-            // },
-            // clear() {
-            //     axios.get('/cart-delete-all').then((res)=>{
-            //         this.items = res.data.items
-            //     })
-            // },
-            // countChange(count) {
-            //     this.count = count[0] 
-            //     this.cartItem = count[1]
-            // },
-            // lastProducts() {
-            //     axios.get('/last-products') .then(res =>{
-            //         this.lastproducts = res.data.products
-            //         this.target = 'Home' 
-            //     }) .catch(err => {
-            //         console.log(err)
-            //     })
-            // },
-            // lastCategories() {
-            //     axios.get('/last-categories') .then(res =>{
-            //         this.lastcategories = res.data.categories
-            //     }) .catch(err => {
-            //         console.log(err)
-            //     })
-            // }
         }
     }
 </script>

@@ -29,7 +29,9 @@ class Contact extends Mailable
      */
     public function build()
     {
-        return $this->subject('Contact Message')
-                  ->markdown('emails.orders.contact');
+        return $this->from($this->contact->email)
+                     ->to('hashco28@gmail.com')
+                     ->subject('Contact Message')
+                     ->markdown('emails.orders.contact');
     }
 }

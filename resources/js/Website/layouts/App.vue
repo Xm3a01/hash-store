@@ -1,7 +1,7 @@
 <template>
 <div>
 <!-- Header section -->
-    <Header :categories = "categories" :count ="count" :products="products" :cartIndc = "cartIndc" />
+    <Header  :count ="count" :cartIndc = "cartIndc" />
 
     <!-- navbar section -->
     <Navbar :target ="target" />
@@ -22,20 +22,12 @@ import Navbar from '../Include/Navbar'
 
 export default {
     components:{Header , Navbar , Footer},
-    props:['items' , 'count' , 'cartIndc' , 'categories' , 'products' , 'target'],
+    props:['count' , 'cartIndc' , 'target'],
     data(){
         return {
             cartItem: [],
         }
     },
-
-    mounted() {
-        // console.log(target)
-    },
-
-    methods :{
-       
-    }
 
       
 }

@@ -27,6 +27,7 @@ Route::group(['prefix' => '/dashboard' , 'middleware' => 'auth:admin'] , functio
       Route::resource('orders','Admin\Dashboard\OrderController');
       Route::resource('users','Admin\Dashboard\UserController');
       Route::resource('admins', 'Admin\Dashboard\AdminController');
+      Route::get('super-admin/{admin}', 'Admin\Dashboard\AdminController@superAdmin')->name('super.admin');
     });
   });
 

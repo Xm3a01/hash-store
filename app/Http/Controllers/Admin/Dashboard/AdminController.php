@@ -6,6 +6,7 @@ use App\Admin;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
@@ -39,11 +40,13 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-       $data =  $this->validate($request , [
+        $data = $this->validate($request , [
             'name' => 'required',
             'email' => 'required',
             'password' => 'required',
+            'phone' => 'required'
         ]);
+
 
         $data['password']  = Hash::make($request->password);
         $data['is_supervisor']  = 1;
@@ -78,7 +81,7 @@ class AdminController extends Controller
      */
     public function edit(Admin $admin)
     {
-        return view('admins.profile.edit' , ['admin' => $admin]);
+        return view('admins.dashboard.admins.edit' , ['admin' => $admin]);
     }
 
     /**
@@ -104,6 +107,10 @@ class AdminController extends Controller
         }
 
         \Session::flash('success' , 'تم تعديل المشرف بنجاح');
+        
+        if($request->edit_admin == 'edit_admin') {
+            return redirect()->route('admins.index');
+        }
         return back();
 
     }
@@ -121,5 +128,11 @@ class AdminController extends Controller
 
         \Session::flash('success' , 'تم حذف المشرف بنجاح');
         return redirect()->route('admins.index');
+    }
+
+
+    public function superAdmin(Admin $admin)
+    {
+        return view('admins.profile.edit' , ['admin' => $admin]);
     }
 }
