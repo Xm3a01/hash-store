@@ -17,6 +17,7 @@
                     <a class="nav-link " href="{{route('products.index')}}"><i class="icon-paypal"></i> المنتجات</a>
                     <a class="nav-link " href="{{route('categories.index')}}"><i class="icon-tag"></i> التصنيفات</a>
                     <a class="nav-link " href="{{route('orders.index')}}"><i class="icon-handbag"></i> الطالبات</a>
+                    <a class="nav-link " href="{{route('ads.index')}}"><i class="icon-handbag"></i> الاعلانات</a>
                 @endif
               
             </li>

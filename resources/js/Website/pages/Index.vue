@@ -1,11 +1,11 @@
 <template>
-    <app-layout :count ="count"  :cartIndc ="cartIndc" :target="target">
+    <app-layout :count ="count"  :target="target">
 
         <!-- Category section -->
         <Category :products = "lastcategories"/>
         
        <!-- Home Section -->
-        <Home :products = "lastproducts"  @countChange="countChange($event)"/>
+        <Home  :products = "lastproducts"  @countChange="countChange($event)"  :ads = "ads"/>
 
     </app-layout>
 </template>
@@ -20,6 +20,7 @@ export default {
         Home,
         Category,
     },
+    props:['ads'],
     data() {
         return {
             categories:[],
@@ -34,7 +35,6 @@ export default {
         }
     },
     mounted(){ 
-        this.getItems();
         // this.getProduct();
         this.lastProducts();
         this.lastCategories();
@@ -65,12 +65,12 @@ export default {
                 })
             },
 
-            getItems() {
-                axios.get('/get-cartItems').then((res)=>{
-                    this.items =  res.data.item
-                    this.cartIndc = res.data.count
-                });
-      },
+    //         getItems() {
+    //             axios.get('/get-cartItems').then((res)=>{
+    //                 this.items =  res.data.item
+    //                 this.cartIndc = res.data.count
+    //             });
+    //   },
             
             countChange(count) {
                 this.count = count[0] 

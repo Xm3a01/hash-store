@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\Website;
 
+use App\Ads;
+
 use App\Product;
+use App\Traits\Mapping;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+   use Mapping;
+
     public function __construct()
     {
     }
@@ -29,6 +29,12 @@ class IndexController extends Controller
         if(Auth::check()) {
             $user = Auth::user()->name;
         }
-        return view('website.index' ,['user' => $user ?? '' ]);
+        $ads = Ads::latest()->first()->get();
+        $this->convert_to_map($ads);
+      
+        return view('website.index' ,[
+            'user' => $user ?? '',
+            'ads' => $ads
+            ]);
     }
 }
