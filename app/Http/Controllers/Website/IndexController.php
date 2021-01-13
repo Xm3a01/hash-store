@@ -29,9 +29,8 @@ class IndexController extends Controller
         if(Auth::check()) {
             $user = Auth::user()->name;
         }
-        $ads = Ads::latest()->first()->get();
+        $ads = Ads::latest('updated_at')->get();
         $this->convert_to_map($ads);
-      
         return view('website.index' ,[
             'user' => $user ?? '',
             'ads' => $ads
