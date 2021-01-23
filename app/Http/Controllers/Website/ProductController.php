@@ -20,13 +20,15 @@ class ProductController extends Controller
     {
         $products = Product::where('productAmount', '>', 0)->with('category')->latest('created_at')->get();
         $this->convert_to_map($products);
-        return response()->json(['products' => $products]); 
+        $products->load('category');
+        return response()->json(['products' => $products]);
     }
 
     public function lastProduct()
     {
         $products = Product::where('productAmount', '>', 0)->latest('created_at')->limit(8)->get();
         $this->convert_to_map($products);
+        $products->load('category');
         return response()->json(['products' => $products]);
     }
 
@@ -74,9 +76,9 @@ class ProductController extends Controller
        return response()->json(['user' =>false ]); 
     }
 
-    public function moreSeled()
+    public function bestSelling()
     {
-        $orders = Order::orderBy('quantity' , 'desc')->take(8)->with('product')->get();
+        $orders = Order::orderBy('quantity' , 'desc')->take(8)->with('product.category')->get();
         $this->convert_relation($orders);
        
         return $orders;

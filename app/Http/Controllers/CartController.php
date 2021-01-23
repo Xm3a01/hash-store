@@ -35,8 +35,15 @@ class CartController extends Controller
     public function addItem($id)
     {
            $total = 0;
+           $images = [];
            $product = Product::findOrFail($id);
         //    $this->convert_to_map($product);
+
+              foreach ($product->getMedia('products') as $key=>$item) {
+                $images[$key] = $item->getUrl(); 
+             }
+
+             $product['images'] = $images;
 
             if(Auth::check()){
             $userId = Auth::user()->id;
@@ -45,7 +52,6 @@ class CartController extends Controller
                     'name' => $product->name,
                     'price' => $product->price,
                     'quantity' => 1,
-                    'attributes' => array('image' => $product->image),
                     'associatedModel' => $product
             ]);
 
@@ -57,7 +63,6 @@ class CartController extends Controller
                     'name' => $product->name,
                     'price' => $product->price,
                     'quantity' => 1,
-                    'attributes' => array('image' => $product->image),
                     'associatedModel' => $product
                 ]);
 
@@ -176,6 +181,7 @@ class CartController extends Controller
      } else {
         $item = Cart::get($id);
      }
+     
      return  view('cart' , ['item' => $item]);
   }
 
@@ -187,6 +193,7 @@ class CartController extends Controller
     } else {
       $item = Cart::get($id);
     }
+    // return $item;
       return view('website.cart' , ['item' => $item]);
     // return $item->associatedModel;
   }

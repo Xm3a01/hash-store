@@ -60,7 +60,7 @@ Route::get('get-cartItems' , 'CartController@cartItems')->name('cart.items');
 Route::get('get-cartItem/{id}' , 'CartController@getItem')->name('cart.item');
 Route::get('show-cartItem/{id}' , 'CartController@showCart')->name('show.cartItem');
 Route::get('save-order' , 'CartController@saveOrder')->name('save.order');
-Route::get('more-sels','Website\ProductController@moreSeled');
+Route::get('best-sels','Website\ProductController@bestSelling');
 
 //
 Route::get('test','CartController@saveOrder');
@@ -68,10 +68,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('sinOut', function () {
-  Auth::guard('web')->logout();
-  return redirect()->route('login');
-});
+Route::get('signOut', 'Auth\LoginController@signOut');
 
 
 Route::get('cart', function () {
