@@ -4054,7 +4054,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".avatar {\n  width: 35px;\n  height: 35px;\n  border-radius: 50%;\n  border: 2px solid #b62828;\n  overflow: hidden;\n}\n.header-search .input {\n  border-radius: 40px 40px 40px 40px;\n  outline: hidden;\n  outline-width: 0;\n}\n.search-item {\n  width: 496px;\n  margin-right: 31px;\n}\r\n", ""]);
+exports.push([module.i, ".avatar {\n  width: 35px;\n  height: 35px;\n  border-radius: 50%;\n  border: 2px solid #b62828;\n  overflow: hidden;\n}\n.header-search .input {\n  border-radius: 40px 40px 40px 40px;\n  outline: hidden;\n  outline-width: 0;\n}\n.search-item {\n  width: 496px;\n  margin-right: 31px;\n}\n", ""]);
 
 // exports
 
@@ -4073,7 +4073,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".image-rdadius {\n  border-radius: 5px;\n  box-shadow: 2px 1px 4px rgba(5, 5, 5, 0.247);\n  overflow: hidden;\n}\n.image-content {\n  margin-bottom: 10px;\n}\r\n", ""]);
+exports.push([module.i, ".image-rdadius {\n  border-radius: 5px;\n  box-shadow: 2px 1px 4px rgba(5, 5, 5, 0.247);\n  overflow: hidden;\n}\n.image-content {\n  margin-bottom: 10px;\n}\n", ""]);
 
 // exports
 
@@ -4092,7 +4092,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".ads-image {\n  border-radius: 5px;\n  box-shadow: 3px 4px 3px rgba(0, 0, 0, 0.212);\n}\n.product {\n  border-radius: 5px 5px 0 0px;\n  /* overflow-y: hidden; */\n  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.212);\n}\n.product img {\n  border-radius: 5px 5px 0 0px;\n}\r\n", ""]);
+exports.push([module.i, ".ads-image {\n  border-radius: 5px;\n  box-shadow: 3px 4px 3px rgba(0, 0, 0, 0.212);\n}\n.product {\n  border-radius: 5px 5px 0 0px;\n  /* overflow-y: hidden; */\n  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.212);\n}\n.product img {\n  border-radius: 5px 5px 0 0px;\n}\n", ""]);
 
 // exports
 
@@ -4111,7 +4111,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".image-rdadius {\n  border-radius: 5px;\n  box-shadow: 2px 1px 4px rgba(5, 5, 5, 0.247);\n  overflow: hidden;\n}\n.image-content {\n  margin-bottom: 10px;\n}\r\n", ""]);
+exports.push([module.i, ".image-rdadius {\n  border-radius: 5px;\n  box-shadow: 2px 1px 4px rgba(5, 5, 5, 0.247);\n  overflow: hidden;\n}\n.image-content {\n  margin-bottom: 10px;\n}\n", ""]);
 
 // exports
 
@@ -4130,7 +4130,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".side-active {\n  border-bottom: 2px solid rgb(170, 33, 33);\n  color: rgb(170, 33, 33);\n}\r\n", ""]);
+exports.push([module.i, ".side-active {\n  border-bottom: 2px solid rgb(170, 33, 33);\n  color: rgb(170, 33, 33);\n}\n", ""]);
 
 // exports
 
@@ -6869,23 +6869,25 @@ var render = function() {
         _c("div", { staticClass: "container" }, [
           _vm._m(2),
           _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-md-5 col-sm-2" }, [
-              _c("img", {
-                staticClass: "ads-image",
-                attrs: { src: _vm.ads[0].image, alt: "", height: "250" }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-6 col-sm-4" }, [
-              _c("h4", [
-                _vm._v(_vm._s(_vm.ads[0].title)),
-                _c("span", { staticStyle: { color: "red" } })
-              ]),
-              _vm._v(" "),
-              _c("p", [_vm._v(_vm._s(_vm.ads[0].description))])
-            ])
-          ])
+          _vm.ads[0] != null
+            ? _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-5 col-sm-2" }, [
+                  _c("img", {
+                    staticClass: "ads-image",
+                    attrs: { src: _vm.ads[0].image, alt: "", height: "250" }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6 col-sm-4" }, [
+                  _c("h4", [
+                    _vm._v(_vm._s(_vm.ads[0].title)),
+                    _c("span", { staticStyle: { color: "red" } })
+                  ]),
+                  _vm._v(" "),
+                  _c("p", [_vm._v(_vm._s(_vm.ads[0].description))])
+                ])
+              ])
+            : _vm._e()
         ])
       ]
     ),
@@ -21806,8 +21808,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! F:\Projects\hash-store\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! F:\Projects\hash-store\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/mohamed/Projects/old/hash-store/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/mohamed/Projects/old/hash-store/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })

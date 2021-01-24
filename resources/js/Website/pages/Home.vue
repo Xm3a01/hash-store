@@ -74,7 +74,7 @@
             <h3 class="title">Ads Area</h3>
           </div>
         </div>
-        <div class="row">
+        <div class="row" v-if="ads[0] != null">
           <div class="col-md-5 col-sm-2">
             <img class="ads-image" :src="ads[0].image" alt="" height="250" />
           </div>
