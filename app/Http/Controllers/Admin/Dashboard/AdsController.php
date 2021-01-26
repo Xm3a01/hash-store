@@ -51,7 +51,7 @@ class AdsController extends Controller
     {
         $data = $request->except('image');
         $data['created_at'] = Carbon::now();
-        $data['updated_at'] = Carbon::now();
+        $data['updated_at'] = Carbon::now(); 
         $ad->update($data);
 
         if($request->hasFile('image')) {
