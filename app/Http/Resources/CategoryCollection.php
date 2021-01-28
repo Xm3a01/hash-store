@@ -14,12 +14,20 @@ class CategoryCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return $this->collection->map(function($product){
+        return $this->collection->map(function($category){
             return [
-                'name' => $product->name,
-                'description' => $product->description,
-                'price' => $product->price,
-                'image' => $product->image
+                'name' => $category->name,
+                'description' => $category->description,
+                'image' => $category->image,
+                'products' => $category->products->map(function($product){
+                    return [
+                     'name' => $product->name,
+                     'description' => $product->description,
+                     'price' => $product->price,
+                     'disCount' => $product->disCount,
+                     'image' => $product->image,
+                    ];
+                }),
             ];
         });
     }

@@ -42,7 +42,7 @@ class ProductController extends Controller
         // if(!$request->admin_id) {
         //   $data['admin_id'] = Auth::guard('admin')->user()->id;
         // }
-        // return $request->image;
+        // return $request->image[0];
 
         $this->validate($request , [
             'name' => 'required',
@@ -88,12 +88,13 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $data = $request->all();
+        // return $request->image;
 
         $product->update($data);
         if ($request->hasFile('image')) {
             $product->clearMediaCollection('products');
             foreach ($request->image as $item) {  
-              $product->addMedia($item)->preservingOriginal()->toMediaCollection('products');
+               $product->addMedia($item)->preservingOriginal()->toMediaCollection('products');
             }
         }
 
