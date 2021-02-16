@@ -23,7 +23,7 @@ class Product extends Model implements HasMedia
         'color',
         'productAmount',
         'admin_id',
-        'fiexdAmount'
+        'fiexdAmount',
     ];
 
 

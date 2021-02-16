@@ -20,7 +20,7 @@
     {{-- <link type="text/css" rel="stylesheet" href="{{asset('vendor/website/css/slick.css')}}"/>
     <link type="text/css" rel="stylesheet" href="{{asset('vendor/website/css/slick-theme.css')}}"/> --}}
     
-    <!-- nouislider -->
+    {{-- <!-- nouislider --> --}}
     <link type="text/css" rel="stylesheet" href="{{asset('vendor/website/css/nouislider.min.css')}}"/>
     
     <!-- Font Awesome Icon -->

@@ -108,6 +108,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // this is normal method to delete 
     public function destroy(Product $product)
     {
         $product->clearMediaCollection('products');
