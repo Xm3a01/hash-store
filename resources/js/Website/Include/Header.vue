@@ -178,8 +178,8 @@
                           }}</a>
                         </h3>
                         <h4 class="product-price">
-                          <span class="qty">{{ item.quantity }}</span
-                          >{{ item.price }}
+                          <span class="qty"> Quantity: {{ item.quantity }}</span
+                          > Price: {{ item.price }} SD
                         </h4>
                       </div>
                       <button
@@ -196,7 +196,7 @@
                   </div>
                   <div class="cart-btns">
                     <a href="#" @click.prevent="cartDeleteAll">Delete All</a>
-                    <a href="#">Checkout </a>
+                    <a href="/checkout">Checkout </a>
                   </div>
                 </div>
               </div>

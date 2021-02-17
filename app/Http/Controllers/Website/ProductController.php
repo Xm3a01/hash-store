@@ -6,6 +6,7 @@ use App\Order;
 use App\Mapping;
 use App\Product;
 use App\Category;
+use App\OrderDetail;
 use Darryldecode\Cart\Cart;
 use Illuminate\Http\Request;
 use App\Traits\Mapping as Canvert;
@@ -78,9 +79,12 @@ class ProductController extends Controller
 
     public function bestSelling()
     {
-        $orders = Order::orderBy('quantity' , 'desc')->take(8)->with('product.category')->get();
+        $orders = OrderDetail::orderBy('quantity' , 'desc')->take(8)->whereHas('product' ,function($query){
+            $query->where('productAmount', '>', 0);
+        })->get();
+        $orders->load('product.category');
         $this->convert_relation($orders);
-       
+    
         return $orders;
     }
 

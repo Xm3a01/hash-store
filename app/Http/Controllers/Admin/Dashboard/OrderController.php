@@ -74,4 +74,9 @@ class OrderController extends Controller
         \Session::flash('success' , 'تم حذف الطلب بنجاح');
         return redirect()->route('orders.index');
     }
+
+    public function orderDetails(Order $order)
+    {
+        return view('admins.dashboard.orders.order_details' , ['orders' => $order->order_details]);
+    }
 }

@@ -25,6 +25,7 @@ Route::group(['prefix' => '/dashboard' , 'middleware' => 'auth:admin'] , functio
      Route::group(['middleware' => 'is_admin'] , function(){
       Route::resource('categories','Admin\Dashboard\CategoryController');
       Route::resource('orders','Admin\Dashboard\OrderController');
+      Route::get('orders/{order}/details','Admin\Dashboard\OrderController@orderDetails')->name('orders.details');
       Route::resource('users','Admin\Dashboard\UserController');
       Route::resource('ads', 'Admin\Dashboard\AdsController');
       Route::resource('admins', 'Admin\Dashboard\AdminController');
@@ -59,16 +60,16 @@ Route::get('cart-delete-all' , 'CartController@deleteAll')->name('cart.delete.al
 Route::get('get-cartItems' , 'CartController@cartItems')->name('cart.items');
 Route::get('get-cartItem/{id}' , 'CartController@getItem')->name('cart.item');
 Route::get('show-cartItem/{id}' , 'CartController@showCart')->name('show.cartItem');
-Route::get('save-order' , 'CartController@saveOrder')->name('save.order');
+Route::post('send-order' , 'CartController@saveOrder')->name('save.order');
 Route::get('best-sels','Website\ProductController@bestSelling');
 
 //
-Route::get('test','CartController@saveOrder');
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::get('signOut', 'Auth\LoginController@signOut');
+
+// Route::get('test','CartController@saveOrder');
+// Route::get('/home', 'HomeController@index')->name('home');
+
 
 
 Route::get('cart', function () {

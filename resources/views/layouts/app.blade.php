@@ -12,20 +12,19 @@
 
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
-
     <!-- Bootstrap -->
     <link type="text/css" rel="stylesheet" href="{{asset('vendor/website/css/bootstrap.min.css')}}"/>
 
     <!-- Slick -->
     {{-- <link type="text/css" rel="stylesheet" href="{{asset('vendor/website/css/slick.css')}}"/>
     <link type="text/css" rel="stylesheet" href="{{asset('vendor/website/css/slick-theme.css')}}"/> --}}
-    
+
     {{-- <!-- nouislider --> --}}
     <link type="text/css" rel="stylesheet" href="{{asset('vendor/website/css/nouislider.min.css')}}"/>
-    
+
     <!-- Font Awesome Icon -->
     <link rel="stylesheet" href="{{asset('vendor/website/css/font-awesome.min.css')}}">
-    
+
     <!-- Custom stlylesheet -->
     <link type="text/css" rel="stylesheet" href="{{asset('vendor/website/css/style.css')}}"/>
     {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet"> --}}

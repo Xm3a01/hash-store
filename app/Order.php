@@ -4,6 +4,7 @@ namespace App;
 
 use App\User;
 use App\Product;
+use App\OrderDetail;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model

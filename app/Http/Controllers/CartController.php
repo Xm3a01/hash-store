@@ -22,13 +22,13 @@ class CartController extends Controller
             $userId = Auth::user()->id;
             return response()->json([
                 'item' => Cart::session($userId)->getContent() ,
-                'count' => Cart::session($userId)->getTotalQuantity() ,
+                'count' => Cart::session($userId)->getContent()->count() ,
                 'total' => Cart::session($userId)->getTotal()
                 ]);
           } else {
             return response()->json([
                 'item' => Cart::getContent() ,
-                'count' => Cart::getTotalQuantity() ,
+                'count' => Cart::getContent()->count() ,
                 'total' => Cart::getTotal()
                 ]);
           }
@@ -71,7 +71,7 @@ class CartController extends Controller
             }
             return response()->json([
                 'item' => $item->getContent() ,
-                'count' => $item->getTotalQuantity() ,
+                'count' => Cart::getContent()->count(),
                 'total' => $total
                 ]);
         }
@@ -93,7 +93,7 @@ class CartController extends Controller
               return response()->json([
                   'item' => $item ,
                   'total' => Cart::session($userId)->getTotal(),
-                  'count' => Cart::getTotalQuantity(),
+                  'count' => Cart::getContent()->count(),
                   ]);
           } else {
               $item = Cart::update($request->id , array(
@@ -105,7 +105,7 @@ class CartController extends Controller
               return response()->json([
 
                   'item' => $item ,
-                  'count' => Cart::getTotalQuantity(),
+                  'count' => Cart::getContent()->count(),
                   'quantity' => Cart::get($request->id)->quantity
                   ]);
           }
@@ -185,6 +185,7 @@ class CartController extends Controller
           ]);
       }
       Cart::clear();
+      return view('website.success');
     }
 
   }

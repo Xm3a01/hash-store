@@ -4,6 +4,7 @@ namespace App;
 
 use App\Order;
 use App\Category;
+use App\OrderDetail;
 use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -42,9 +43,9 @@ class Product extends Model implements HasMedia
         return $this->orders->count();
     }
 
-    public function orders()
+    public function order_details()
     {
-        return $this->hasMany(Order::class);
+        return $this->hasMany(OrderDetail::class);
     }
 
     // public function getImagesAttribute()

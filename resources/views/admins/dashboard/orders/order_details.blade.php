@@ -22,11 +22,9 @@
                                         <thead>
                                             <tr>
                                                 <th>رقم الطلب</th>
-                                                <th> العنوان</th>
-                                                <th> رقم الهاتف</th>
-                                                <th> عنوان المكتب</th>
-                                                <th>وقت التسليم </th>
-                                                <th> وقت التسليم في المكتب </th>
+                                                <th>اسم الطلب</th>
+                                                <th>كمية الطلب</th>
+                                                <th>سعر الطلب</th>
                                                 <th>تاريخ الطلب</th>
                                                 <th> السعر الكلي</th>
                                                 <th>اسم المستخدم</th>
@@ -38,11 +36,9 @@
                                             @foreach ($orders as $order)
                                                 <tr>
                                                     <td>{{ $order->id }}</td>
-                                                    <td>{{ $order->address }}</td>
-                                                    <td>{{ $order->phone }}</td>
-                                                    <td>{{ $order->office_address }}</td>
-                                                    <td>{{ $order->delivery_time }}</td>
-                                                    <td>{{ $order->office_delivery_time }}</td>
+                                                    <td>{{ $order->name }}</td>
+                                                    <td>{{ $order->quantity }}</td>
+                                                    {{-- <td>{{ $order->totalPrice / $order->quantity }}</td> --}}
                                                     <td>{{ $order->created_at }}</td>
                                                     <td>{{ $order->totalPrice }}</td>
                                                     <td>{{ $order->user->name ?? 'Unkonw' }}</td>
@@ -54,9 +50,6 @@
                                                             <a style="color:white" class="nav-link btn  btn-info"
                                                                 href="{{ route('orders.edit', $order->id) }}"><i
                                                                     class="fa fa-edit"></i></a>
-                                                                    <a style="color:white" class="nav-link btn  btn-info"
-                                                                href="{{ route('orders.details', $order->id) }}"><i
-                                                                    class="fa fa-info"></i></a>
                                                             <button class="btn btn-danger nav-link" type="submit"><i
                                                                     class="fa fa-trash"></i></button>
                                                         </form>
