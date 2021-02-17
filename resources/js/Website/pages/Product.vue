@@ -63,7 +63,7 @@
                   <div class="product-img">
                     <img :src="product.image" alt="" />
                     <div class="product-label">
-                     
+
                     </div>
                   </div>
                   <div class="product-body">
@@ -216,5 +216,9 @@ export default {
 .side-active {
   border-bottom: 2px solid rgb(170, 33, 33);
   color: rgb(170, 33, 33);
+}
+.product .product-img img {
+    width: 262.05px;
+    height: 147.64px;
 }
 </style>

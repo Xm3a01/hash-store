@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\OrderDetail;
 use Cart;
 use App\Order;
 use App\Product;
@@ -20,14 +21,14 @@ class CartController extends Controller
         if(Auth::check()){
             $userId = Auth::user()->id;
             return response()->json([
-                'item' => Cart::session($userId)->getContent() , 
-                'count' => Cart::session($userId)->getTotalQuantity() , 
+                'item' => Cart::session($userId)->getContent() ,
+                'count' => Cart::session($userId)->getTotalQuantity() ,
                 'total' => Cart::session($userId)->getTotal()
                 ]);
           } else {
             return response()->json([
-                'item' => Cart::getContent() , 
-                'count' => Cart::getTotalQuantity() , 
+                'item' => Cart::getContent() ,
+                'count' => Cart::getTotalQuantity() ,
                 'total' => Cart::getTotal()
                 ]);
           }
@@ -40,7 +41,7 @@ class CartController extends Controller
         //    $this->convert_to_map($product);
 
               foreach ($product->getMedia('products') as $key=>$item) {
-                $images[$key] = $item->getUrl(); 
+                $images[$key] = $item->getUrl();
              }
 
              $product['images'] = $images;
@@ -67,10 +68,10 @@ class CartController extends Controller
                 ]);
 
                 $total = Cart::getTotal();
-            } 
+            }
             return response()->json([
-                'item' => $item->getContent() , 
-                'count' => $item->getTotalQuantity() , 
+                'item' => $item->getContent() ,
+                'count' => $item->getTotalQuantity() ,
                 'total' => $total
                 ]);
         }
@@ -90,7 +91,7 @@ class CartController extends Controller
                   ),
               ]);
               return response()->json([
-                  'item' => $item , 
+                  'item' => $item ,
                   'total' => Cart::session($userId)->getTotal(),
                   'count' => Cart::getTotalQuantity(),
                   ]);
@@ -102,8 +103,8 @@ class CartController extends Controller
                   ),
               ));
               return response()->json([
-                  
-                  'item' => $item , 
+
+                  'item' => $item ,
                   'count' => Cart::getTotalQuantity(),
                   'quantity' => Cart::get($request->id)->quantity
                   ]);
@@ -142,34 +143,50 @@ class CartController extends Controller
     return response()->json(['code' => 200]);
   }
 
-  public function saveOrder()
+  public function saveOrder(Request  $request)
   {
     if(Auth::check()) {
         $userId = Auth::user()->id;
+        $order = Order::create([
+            'totalPrice' => Cart::getTotal(),
+            'user_id' => $userId,
+            'address' => $request->address,
+            'phone' => $request->phone,
+            'office_address' => $request->office_address,
+            'delivery_time' => $request->delivery_time,
+            'office_delivery_time' => $request->office_delivery_time
+        ]);
       foreach (Cart::session($userId)->getContent() as $key => $cart) { //weltested letar
         $this->amount($cart->id , $cart->quantity);
-          Order::create([
-            'name' =>$cart->name,
-            'totalPrice' => $cart->price,
+          OrderDetail::create([
+            'price' => $cart->price,
             'quantity' => $cart->quantity,
-            'user_id' => $userId,
-            'product_id' => $cart->id
+            'product_id' => $cart->id,
+            'order_id' => $order->id
          ]);
       }
       Cart::session($userId)->clear();
     } else {
+        $order = Order::create([
+            'totalPrice' => Cart::getTotal(),
+            'address' => $request->address,
+            'phone' => $request->phone,
+            'office_address' => $request->office_address,
+            'delivery_time' => $request->delivery_time,
+            'office_delivery_time' => $request->office_delivery_time
+        ]);
       foreach (Cart::getContent() as $key => $cart) { //weltested letar
         $this->amount($cart->id , $cart->quantity);
-          Order::create([
-            'name' =>$cart->name,
-            'totalPrice' => $cart->price,
-            'quantity' => $cart->quantity,
-            'product_id' => $cart->id
-         ]);
+          OrderDetail::create([
+              'price' => $cart->price,
+              'quantity' => $cart->quantity,
+              'product_id' => $cart->id,
+              'order_id' => $order->id
+          ]);
       }
       Cart::clear();
     }
-     
+
   }
 
   public function getItem($id)
@@ -181,7 +198,7 @@ class CartController extends Controller
      } else {
         $item = Cart::get($id);
      }
-     
+
      return  view('cart' , ['item' => $item]);
   }
 

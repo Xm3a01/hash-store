@@ -24,7 +24,7 @@
         <!-- row -->
         <form @submit.prevent="contact" method="post">
           <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-8 offset-2">
               <!-- Billing Details -->
               <div class="billing-details">
                 <div class="section-title">
@@ -33,7 +33,7 @@
 
                 <div class="form-group">
                   <input
-                    class="input"
+                    class="input form-control"
                     type="text"
                     name="name"
                     placeholder=" Name"
@@ -43,7 +43,7 @@
 
                 <div class="form-group">
                   <input
-                    class="input"
+                    class="input form-control"
                     type="email"
                     name="email"
                     placeholder="Email"
@@ -52,7 +52,7 @@
                 </div>
                 <div class="form-group">
                   <input
-                    class="input"
+                    class="input form-control"
                     type="text"
                     name="subject"
                     placeholder="Subject"

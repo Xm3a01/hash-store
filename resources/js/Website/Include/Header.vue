@@ -34,7 +34,7 @@
               </div>
             </div>
           </li>
-         
+
         </ul>
 
         <ul class="header-links pull-right" v-if="!user">
@@ -121,10 +121,11 @@
                   >
                   <div
                     class="cart"
-                    v-for="product in searchProducts"
+                    v-for="(product , index) in searchProducts"
                     :key="product.id"
                   >
-                    <div class="product-widget">
+                      <hr v-if="index != 0">
+                    <div class="product-widget" v-if="searchProducts">
                       <div class="product-img">
                         <img :src="product.image" alt="" />
                       </div>
@@ -323,6 +324,11 @@ export default {
 .search-item {
   width: 496px;
   margin-right: 31px;
+}
+
+.product-widget .product-img img {
+    width: 60px;
+    height: 33.74px;
 }
 </style>
 

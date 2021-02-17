@@ -13,10 +13,10 @@ class Product extends Model implements HasMedia
     use InteractsWithMedia;
 
     protected $fillable = [
-        'name', 
-        'description' , 
-        'price' , 
-        'category_id' , 
+        'name',
+        'description' ,
+        'price' ,
+        'category_id' ,
         'availableSize',
         'disCount',
         'unitPrice',
@@ -39,7 +39,7 @@ class Product extends Model implements HasMedia
 
     public function getSellCountAttribute()
     {
-        return $this->orders->count(); 
+        return $this->orders->count();
     }
 
     public function orders()

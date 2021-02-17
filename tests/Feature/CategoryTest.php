@@ -10,8 +10,8 @@ use Tests\TestCase;
 class CategoryTest extends TestCase
 {
     use RefreshDatabase;
-   
-    /** 
+
+    /**
      * @test
      *  @group add
      */
@@ -30,10 +30,10 @@ class CategoryTest extends TestCase
 
     }
 
-    public function data()
-    {
-        return [
-            'name' => 'Bnana'
-        ];
-    }
+//    public function data()
+//    {
+//        return [
+//            'name' => 'Bnana'
+//        ];
+//    }
 }

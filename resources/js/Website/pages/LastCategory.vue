@@ -44,3 +44,10 @@ export default {
   },
 };
 </script>
+
+<style>
+.shop-img img {
+    width: 360.02px;
+    height: 202.51px;
+}
+</style>
