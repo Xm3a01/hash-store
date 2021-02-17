@@ -74,3 +74,7 @@ Route::get('signOut', 'Auth\LoginController@signOut');
 Route::get('cart', function () {
   return view('cart');
 });
+
+Route::get('checkout', function () {
+    return view('website.checkout');
+});
