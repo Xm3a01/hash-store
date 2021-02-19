@@ -25,7 +25,7 @@ class CategoryCollection extends ResourceCollection
                      'description' => $product->description,
                      'price' => $product->price,
                      'disCount' => $product->disCount,
-                     'image' => $product->image,
+                     'image' => $product->images,
                     ];
                 }),
             ];

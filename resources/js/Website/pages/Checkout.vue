@@ -9,7 +9,7 @@
                     <div class="col-md-4 col-md-offset-4" style="padding-top:30px">
                         <div class="row">
                             <div class="col-md-6">
-                                <a class="btn btn-info" href="/send-order">Direct pay</a>
+                                <a class="btn btn-info" @click="order">Direct pay</a>
                             </div>
                             <div class="col-md-6">
                                 <a class="btn btn-info" href="#" @click.prevent="count = 2">Use pay method</a>
@@ -140,6 +140,7 @@ export default {
         order() {
             console.log(this.form.email);
             axios.post("/send-order", this.form).then((res) => {
+                location= '/success';
                 this.status = res.data;
                 this.form = {};
                 //   console.log(res.data)

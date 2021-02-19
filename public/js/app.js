@@ -2949,6 +2949,7 @@ __webpack_require__.r(__webpack_exports__);
 
       console.log(this.form.email);
       axios.post("/send-order", this.form).then(function (res) {
+        location = '/success';
         _this.status = res.data;
         _this.form = {}; //   console.log(res.data)
       });
@@ -6510,7 +6511,7 @@ var render = function() {
                           "a",
                           {
                             staticClass: "btn btn-info",
-                            attrs: { href: "/send-order" }
+                            on: { click: _vm.order }
                           },
                           [_vm._v("Direct pay")]
                         )

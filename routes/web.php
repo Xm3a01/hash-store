@@ -79,3 +79,7 @@ Route::get('cart', function () {
 Route::get('checkout', function () {
     return view('website.checkout');
 });
+
+Route::get('success', function () {
+  return view('website.success');
+});
